@@ -879,6 +879,8 @@ describe('WAValidator.validate()', function () {
             invalid('g4VPBPrHZkfE8CsjuG2S4yBQNd455UWmk', 'stellar');
         });
 
+
+
         it('should return false for incorrect xtz(tezos) address', function () {
             commonTests('xtz');
             invalid('SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU', 'xtz');
@@ -886,7 +888,9 @@ describe('WAValidator.validate()', function () {
             invalid('GCFZB6L25D26RQFDWSSBDEYQ32JHLRMTT44ZYE3DZQUTYOL7WY43PLBG', 'xtz');
             invalid('tz1RR6wy9BeXG3Fjk25YmkSMGHxTtKkhpX', 'xtz');
             invalid('tz1h3rQ8wBxFd8L9B3d7JhaPQawu6Z568XU3xY', 'xtz');
+            invalid('tz1Lhf4J9Qxoe4DZ2nfe8FGDnvVj7oKjnMY6', 'xtz');
             invalid('KT1E2LvxxFGB3Svh9p9HCP2jEEYyHjABMbK', 'xtz');
+
         });
 
         it('should return false for incorrect eos addresses', function () {
