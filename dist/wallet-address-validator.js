@@ -11390,7 +11390,7 @@ module.exports = {
         return new BigNum(bignumber).toBuffer({ size, endian: 'big' });
     },
     base32: base32
-}
+};
 
 }).call(this,require("buffer").Buffer)
 },{"./base32":127,"./base58":128,"./blake256":131,"./blake2b":132,"./sha3":135,"browserify-bignum":3,"buffer":4,"jssha/src/sha256":32}],137:[function(require,module,exports){
@@ -11990,22 +11990,26 @@ var integratedAddressRegTest = new RegExp(
 )
 
 function validateNetwork(decoded, currency, networkType, addressType) {
-  var network = currency.addressTypes
-  if (addressType == 'integrated') {
-    network = currency.iAddressTypes
-  }
-  var at = parseInt(decoded.substr(0, 2), 16).toString()
+  const at = parseInt(decoded.substr(0, 2), 16).toString()
 
-  switch (networkType) {
-    case 'prod':
-      return network.prod.indexOf(at) >= 0
-    case 'testnet':
-      return network.testnet.indexOf(at) >= 0
-    case 'both':
-      return network.prod.indexOf(at) >= 0 || network.testnet.indexOf(at) >= 0
-    default:
-      return false
+  if (currency.name === 'loki')  {
+      switch (networkType) {
+          case 'prod':
+              return at === '114' || at === '115' || at === '116'
+          default:
+              return false
+      }
+  } else if (currency.name === 'Monero') {
+      switch (networkType) {
+          case 'prod':
+              return at === '18' || at === '42' || at === '19'
+          case 'testnet':
+              return at === '53' || at === '63' || at === '54'
+          default:
+              return false
+      }
   }
+  return false
 }
 
 function hextobin(hex) {
@@ -12094,7 +12098,8 @@ var isValidAddress = function(_address) {
 
 module.exports = {
     isValidAddress: isValidAddress,
-}
+};
+
 }).call(this,require("buffer").Buffer)
 },{"./crypto/utils":136,"buffer":4}],144:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils');
