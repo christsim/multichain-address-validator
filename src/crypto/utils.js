@@ -122,4 +122,4 @@ module.exports = {
         return new BigNum(bignumber).toBuffer({ size, endian: 'big' });
     },
     base32: base32
-};
+}
