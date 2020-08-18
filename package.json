@@ -10,7 +10,6 @@
         "javascript",
         "browser",
         "nodejs",
-
         "0x","zrx",
         "Aragon","ant",
         "Augur","rep",
@@ -96,6 +95,7 @@
         "Stellar","xlm",
         "Storj","storj",
         "Storm","storm",
+        "StormX","stmx",
         "Swarm City","swt",
         "Synthetix Network","snx",
         "TEMCO","temco",
@@ -104,6 +104,7 @@
         "Tezos","xtz",
         "Tron","trx",
         "TrueUSD","tusd",
+        "VeChain","vet",
         "VertCoin","vtc",
         "Viberate","vib",
         "VoteCoin","vot",
@@ -113,7 +114,7 @@
         "ZClassic","zcl",
         "ZenCash","zen"
     ],
-    "version": "0.4.1",
+    "version": "0.4.5",
     "author": "Chris <chris.tsim@gmail.com>",
     "homepage": "https://github.com/christsim/multicoin-address-validator",
     "license": "MIT",
@@ -134,20 +135,21 @@
         "start": "npm run bundle && npm run minify && npm test"
     },
     "dependencies": {
-        "base-x": "^3.0.7",
+        "base-x": "^3.0.8",
         "browserify-bignum": "^1.3.0-2",
         "cbor-js": "^0.1.0",
         "crc": "^3.8.0",
-        "jssha": "2.3.1"
+        "jssha": "^2.4.2",
+        "lodash.isequal": "^4.5.0"
     },
     "devDependencies": {
-        "browserify": "^16.5.0",
+        "browserify": "^16.5.1",
         "chai": "^4.2.0",
-        "karma": "^4.4.1",
+        "karma": "^5.1.0",
         "karma-chai": "^0.1.0",
         "karma-chrome-launcher": "^3.1.0",
-        "karma-mocha": "^1.3.0",
-        "mocha": "^7.0.0",
+        "karma-mocha": "^2.0.1",
+        "mocha": "^8.0.1",
         "uglify-es": "^3.3.9"
     },
     "standard": {

@@ -15,8 +15,7 @@ var XTZValidator = require('./tezos_validator');
 var USDTValidator = require('./usdt_validator');
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
-var CURRENCIES = [
-    {
+var CURRENCIES = [{
         name: 'Bitcoin',
         symbol: 'btc',
         addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4', '3c', '26'] },
@@ -253,8 +252,8 @@ var CURRENCIES = [
     }, {
         name: 'Monero',
         symbol: 'xmr',
-        addressTypes: { prod: ['18'], testnet: ['53'] },
-        iAddressTypes: { prod: ['19'], testnet: ['54'] },
+        addressTypes: { prod: ['18', '42'], testnet: ['53', '63'], stagenet: ['24'] },
+        iAddressTypes: { prod: ['19'], testnet: ['54'], stagenet: ['25'] },
         validator: XMRValidator
     }, {
         name: 'Aragon',
@@ -383,7 +382,7 @@ var CURRENCIES = [
     }, {
         name: 'loki',
         symbol: 'loki',
-        addressTypes: { prod: ['114', '116'], testnet: [] },
+        addressTypes: { prod: ['114', '115', '116'], testnet: [] },
         iAddressTypes: { prod: ['115'], testnet: [] },
         validator: XMRValidator
     }, {
@@ -473,18 +472,27 @@ var CURRENCIES = [
         symbol: 'temco',
         validator: ETHValidator,
     }, {
-      name: 'EOS',
-      symbol: 'eos',
-      validator: EOSValidator
+        name: 'EOS',
+        symbol: 'eos',
+        validator: EOSValidator
     }, {
         name: 'Tezos',
         symbol: 'xtz',
         validator: XTZValidator
+    }, {
+        name: 'VeChain',
+        symbol: 'vet',
+        validator: ETHValidator
+    },
+    {
+        name: 'StormX',
+        symbol: 'stmx',
+        validator: ETHValidator
     }
-];
+    ];
 
 
-module.exports = {
+    module.exports = {
     getByNameOrSymbol: function (currencyNameOrSymbol) {
         var nameOrSymbol = currencyNameOrSymbol.toLowerCase();
         return CURRENCIES.find(function (currency) {
