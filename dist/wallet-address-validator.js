@@ -7385,8 +7385,10 @@ function isValidAddressShelley(address, currency, opts) {
     let correctBech32Hrps;
     if (networkType === 'prod' || networkType === 'testnet') {
         correctBech32Hrps = currency.bech32Hrp[networkType];
-    } else {
+    } else if (currency.bech32Hrp) {
         correctBech32Hrps = currency.bech32Hrp.prod.concat(currency.bech32Hrp.testnet)
+    } else {
+        return false;
     }
 
     if (correctBech32Hrps.indexOf(bech32Hrp) === -1) {
@@ -7525,8 +7527,10 @@ function isValidP2PKHandP2SHAddress(address, currency, opts) {
     if (addressType) {
         if (networkType === 'prod' || networkType === 'testnet') {
             correctAddressTypes = currency.addressTypes[networkType]
-        } else {
+        } else if (currency.addressTypes) {
             correctAddressTypes = currency.addressTypes.prod.concat(currency.addressTypes.testnet);
+        } else {
+            return false;
         }
 
         return correctAddressTypes.indexOf(addressType) >= 0;
@@ -10013,8 +10017,10 @@ function isValidAddress(address, currency, opts) {
     if (bech32Hrp) {
       if (networkType === 'prod' || networkType === 'testnet') {
         correctBech32Hrps = currency.bech32Hrp[networkType];
-      } else {
+      } else if(currency.bech32Hrp) {
         correctBech32Hrps = currency.bech32Hrp.prod.concat(currency.bech32Hrp.testnet)
+      } else {
+          return false;
       }
 
       if (correctBech32Hrps.indexOf(bech32Hrp) === -1) {
