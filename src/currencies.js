@@ -492,6 +492,11 @@ var CURRENCIES = [{
         name: 'StormX',
         symbol: 'stmx',
         validator: ETHValidator
+    },
+    {
+        name: 'Tap',
+        symbol: 'xtp',
+        validator: ETHValidator
     }
     ];
 
