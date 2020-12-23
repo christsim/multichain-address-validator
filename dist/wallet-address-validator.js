@@ -11098,10 +11098,14 @@ var CURRENCIES = [{
         symbol: 'gno',
         validator: ETHValidator
     }, {
-        name: 'Golem',
+        name: 'Golem (GNT)',
         symbol: 'gnt',
         validator: ETHValidator
     }, {
+        name: 'Golem',
+        symbol: 'glm',
+        validator: ETHValidator
+    },  {
         name: 'Matchpool',
         symbol: 'gup',
         validator: ETHValidator
@@ -11327,16 +11331,16 @@ var CURRENCIES = [{
     }
 };
 
-//spit out details for readme.md
+////spit out details for readme.md
 // CURRENCIES
 //     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
 //     .forEach(c => console.log(`* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `));
 
-//spit out keywords for package.json
+////spit out keywords for package.json
 // CURRENCIES
 //     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
 //     .forEach(c => console.log(`"${c.name}","${c.symbol}",`));
-
+//
 
 
 },{"./ada_validator":36,"./bch_validator":37,"./bitcoin_validator":38,"./eos_validator":50,"./ethereum_validator":51,"./lisk_validator":52,"./monero_validator":53,"./nano_validator":54,"./nem_validator":55,"./ripple_validator":56,"./siacoin_validator":57,"./stellar_validator":58,"./tezos_validator":59,"./tron_validator":60,"./usdt_validator":61}],50:[function(require,module,exports){

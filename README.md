@@ -69,7 +69,8 @@ npm install multicoin-address-validator
 * GameCredits/game `'GameCredits'` or `'game'`
 * GarliCoin/grlc `'GarliCoin'` or `'grlc'`
 * Gnosis/gno `'Gnosis'` or `'gno'`
-* Golem/gnt `'Golem'` or `'gnt'`
+* Golem/glm `'Golem'` or `'glm'`
+* Golem (GNT)/gnt `'Golem (GNT)'` or `'gnt'`
 * HedgeTrade/hedg `'HedgeTrade'` or `'hedg'`
 * Hush/hush `'Hush'` or `'hush'`
 * HyperSpace/xsc `'HyperSpace'` or `'xsc'`
@@ -120,6 +121,7 @@ npm install multicoin-address-validator
 * StormX/stmx `'StormX'` or `'stmx'`
 * Swarm City/swt `'Swarm City'` or `'swt'`
 * Synthetix Network/snx `'Synthetix Network'` or `'snx'`
+* Tap/xtp `'Tap'` or `'xtp'`
 * TEMCO/temco `'TEMCO'` or `'temco'`
 * TenX/pay `'TenX'` or `'pay'`
 * Tether/usdt `'Tether'` or `'usdt'`
@@ -135,7 +137,6 @@ npm install multicoin-address-validator
 * ZCash/zec `'ZCash'` or `'zec'`
 * ZClassic/zcl `'ZClassic'` or `'zcl'`
 * ZenCash/zen `'ZenCash'` or `'zen'`
-
 
 ### Usage example
 
