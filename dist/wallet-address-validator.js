@@ -11300,6 +11300,56 @@ var CURRENCIES = [{
         name: 'StormX',
         symbol: 'stmx',
         validator: ETHValidator
+    },
+    {
+        name: 'AugurV2',
+        symbol: 'repv2',
+        validator: ETHValidator
+    },
+    {
+        name: 'FirmaChain',
+        symbol: 'fct',
+        validator: ETHValidator
+    },
+    {
+        name: 'BlockTrade',
+        symbol: 'btt',
+        validator: ETHValidator
+    },
+    {
+        name: 'Quantum Resistant Ledger',
+        symbol: 'qrl',
+        validator: ETHValidator
+    },
+    {
+        name: 'Serve',
+        symbol: 'serv',
+        validator: ETHValidator
+    },
+    {
+        name: 'TakeProfit',
+        symbol: 'xtp',
+        validator: ETHValidator
+    },
+    {
+        name: 'Compound',
+        symbol: 'comp',
+        validator: ETHValidator
+    },
+    {
+        name: 'Paxos',
+        symbol: 'pax',
+        validator: ETHValidator
+    },
+    {
+        name: 'USD Coin',
+        symbol: 'usdc',
+        validator: ETHValidator
+    },
+    {
+        name: 'CUSD',
+        symbol: 'cusd',
+        validator: ETHValidator
     }
     ];
 
