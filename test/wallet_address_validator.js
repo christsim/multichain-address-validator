@@ -261,6 +261,7 @@ describe('WAValidator.validate()', function () {
             valid('DHRzA1YHA1kFWpz2apRckZJy6KZRyGq4EV', 'digibyte');
             valid('DJ53hTyLBdZp2wMi5BsCS3rtEL1ioYUkva', 'digibyte');
             valid('dgb1q00002724tefpjkpn8mp233uyqwd8hnny55e0zg', 'DGB', 'prod')
+            valid('SiEgX2mSYJjVN9YGuC23uckE6BS1ZSHcGD', 'DGB', 'prod')
         });
 
         it('should return true for correct Ethereum addresses', function () {
@@ -433,6 +434,11 @@ describe('WAValidator.validate()', function () {
         it('should return true for correct solarcoin addresses', function () {
             valid('8VxVLzwB26E2YZZ82o1NcQe96QSM2z6GwW', 'slr');
             valid('8YW5qcTjeyqX5kESsqu2BUdXiedgssegtQ', 'SolarCoin');
+        });
+
+        it('should return true for correct tap addresses', function () {
+            valid('0x9ec7d40d627ec59981446a6e5acb33d51afcaf8a', 'xtp');
+            valid('0x9ec7d40d627ec59981446a6e5acb33d51afcaf8a', 'tap');
         });
 
         it('should return true for correct tether addresses', function () {

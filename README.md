@@ -128,7 +128,7 @@ npm install multicoin-address-validator
 * StormX/stmx `'StormX'` or `'stmx'`
 * Swarm City/swt `'Swarm City'` or `'swt'`
 * Synthetix Network/snx `'Synthetix Network'` or `'snx'`
-* TakeProfit/xtp `'TakeProfit'` or `'xtp'`
+* Tap/xtp `'Tap'` or `'xtp'`
 * TEMCO/temco `'TEMCO'` or `'temco'`
 * TenX/pay `'TenX'` or `'pay'`
 * Tether/usdt `'Tether'` or `'usdt'`

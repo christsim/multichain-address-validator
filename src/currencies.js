@@ -188,7 +188,7 @@ var CURRENCIES = [{
     }, {
         name: 'DigiByte',
         symbol: 'dgb',
-        addressTypes: { prod: ['1e'], testnet: [] },
+        addressTypes: { prod: ['1e', '3f'], testnet: [] },
         bech32Hrp: { prod: ['dgb', 'S'], testnet: [] },
         validator: BTCValidator
     }, {
@@ -519,7 +519,7 @@ var CURRENCIES = [{
         validator: ETHValidator
     },
     {
-        name: 'TakeProfit',
+        name: 'Tap',
         symbol: 'xtp',
         validator: ETHValidator
     },
