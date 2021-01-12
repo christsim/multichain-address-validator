@@ -10027,7 +10027,7 @@ function encode (hrp, version, program) {
   return ret;
 }
 
-function isValidAddress(address, currency, opts) {
+function isValidAddress(address, currency, opts = {}) {
     const { networkType = DEFAULT_NETWORK_TYPE} = opts;
     var ret = decode(address);
 
@@ -11007,7 +11007,7 @@ var CURRENCIES = [{
         name: 'GameCredits',
         symbol: 'game',
         addressTypes: { prod: ['26', '05'], testnet: [] },
-        validator: BTCValidator
+        validator: ETHValidator
     }, {
         name: 'PIVX',
         symbol: 'pivx',
@@ -11384,8 +11384,8 @@ var CURRENCIES = [{
         name: 'CUSD',
         symbol: 'cusd',
         validator: ETHValidator
-    }
-    ];
+    },
+];
 
 
     module.exports = {
@@ -11414,7 +11414,7 @@ var CURRENCIES = [{
 
 },{"./ada_validator":36,"./bch_validator":37,"./bitcoin_validator":38,"./eos_validator":50,"./ethereum_validator":51,"./lisk_validator":52,"./monero_validator":53,"./nano_validator":54,"./nem_validator":55,"./ripple_validator":56,"./siacoin_validator":57,"./stellar_validator":58,"./tezos_validator":59,"./tron_validator":60,"./usdt_validator":61}],50:[function(require,module,exports){
 function isValidEOSAddress (address, currency, networkType) {
-  var regex = /^[a-z0-9]+$/g // Must be numbers and lowercase letters only
+  var regex = /^[a-z0-9.]+$/g // Must be numbers, lowercase letters and decimal points only
   if (address.search(regex) !== -1 && address.length === 12) {
     return true
   } else {

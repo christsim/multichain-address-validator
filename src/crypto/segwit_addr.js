@@ -73,7 +73,7 @@ function encode (hrp, version, program) {
   return ret;
 }
 
-function isValidAddress(address, currency, opts) {
+function isValidAddress(address, currency, opts = {}) {
     const { networkType = DEFAULT_NETWORK_TYPE} = opts;
     var ret = decode(address);
 

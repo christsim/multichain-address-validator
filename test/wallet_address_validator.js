@@ -32,6 +32,7 @@ describe('WAValidator.validate()', function () {
             valid('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'bitcoin');
             valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin', 'testnet');
             valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin', 'both');
+            valid('1HVDCg2KrPBH1Mg5SK9fGjAR9KVqyMMdBC', 'btc');
 
             valid('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez');
             valid('116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd');
@@ -411,9 +412,14 @@ describe('WAValidator.validate()', function () {
             valid('9tFTaQM39JXhULZsHauPHhjFrjcGSGXoijEPYoRgAky9Veck2mFp3EifQ2tKHmEHuuUoFfgYRNR2bVaborz5oi8JA8xkqjY', 'monero', 'testnet')
         });
 
-        it('should return true for correct gamecredits addresses', function () {
-            valid('GU5BBtW9gxSKvAknvFi9yUaXKUNW9zUN2p', 'game');
-            valid('GYxQMVzP6YpzX59QNRYqmJeHNtUMYSZPri', 'game');
+        it('should return true for correct erc20 addresses', function () {
+
+            valid('0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB', 'game');
+            valid('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', 'game');
+
+            valid('0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB', 'usdc');
+            valid('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', 'usdc');
+
         });
 
         it('should return true for correct monacoin addresses', function () {
@@ -593,6 +599,7 @@ describe('WAValidator.validate()', function () {
             valid('bittrexacct1', 'eos');
             valid('binancecleos', 'eos');
             valid('123456789012', 'eos');
+            valid('12345678.012', 'eos');
         });
 
         it('should return true for correct vet addresses', function () {
@@ -622,6 +629,9 @@ describe('WAValidator.validate()', function () {
 
         it('should return false for incorrect bitcoincash addresses', function () {
             commonTests('bitcoincash');
+
+            // bch addresses
+            invalid('bc1ql08eyrk03qytqc5pdp5fnwpfh0x3y3k2skauvd', 'bitcoincash', 'both');
         });
 
         it('should return false for incorrect litecoin addresses', function () {
@@ -684,8 +694,14 @@ describe('WAValidator.validate()', function () {
             commonTests('decred');
         });
 
-        it('should return false for incorrect gamecredits addresses', function () {
+        it('should return false for incorrect erc20 addresses', function () {
+
             commonTests('game');
+            commonTests('usdc');
+
+            // old game addresses
+            invalid('GU5BBtW9gxSKvAknvFi9yUaXKUNW9zUN2p', 'game');
+            invalid('GYxQMVzP6YpzX59QNRYqmJeHNtUMYSZPri', 'game');
         });
 
         it('should return false for incorrect monacoin addresses', function () {
@@ -959,9 +975,11 @@ describe('WAValidator.validate()', function () {
         valid('5Ls4AeA639AYrGneYVRaFANMajuaD4KZrf3fGWvt5cVDR1xUXm6qoFYLkgU6Vp12fs2R24r4269inAWHFEdsLnE8BCU5Q2gDkbq2HYDrn2', 'monero', 'both');
     });
 
-    it('should return true for correct gamecredits addresses', function () {
-        valid('GU5BBtW9gxSKvAknvFi9yUaXKUNW9zUN2p', 'game');
-        valid('GYxQMVzP6YpzX59QNRYqmJeHNtUMYSZPri', 'game');
+    it('should return true for correct erc20 addresses', function () {
+
+        valid('0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB', 'game');
+        valid('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', 'game');
+
     });
 
     it('should return true for correct monacoin addresses', function () {
@@ -1191,10 +1209,6 @@ describe('invalid results', function () {
 
     it('should return false for incorrect decred addresses', function () {
         commonTests('decred');
-    });
-
-    it('should return false for incorrect gamecredits addresses', function () {
-        commonTests('game');
     });
 
     it('should return false for incorrect monacoin addresses', function () {

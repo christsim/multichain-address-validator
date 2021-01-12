@@ -116,7 +116,7 @@
         "ZClassic","zcl",
         "ZenCash","zen"
     ],
-    "version": "0.4.14",
+    "version": "0.4.15",
     "author": "Chris <chris.tsim@gmail.com>",
     "homepage": "https://github.com/christsim/multicoin-address-validator",
     "license": "MIT",
