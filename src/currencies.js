@@ -169,7 +169,7 @@ var CURRENCIES = [{
         name: 'GameCredits',
         symbol: 'game',
         addressTypes: { prod: ['26', '05'], testnet: [] },
-        validator: BTCValidator
+        validator: ETHValidator
     }, {
         name: 'PIVX',
         symbol: 'pivx',
@@ -546,8 +546,8 @@ var CURRENCIES = [{
         name: 'CUSD',
         symbol: 'cusd',
         validator: ETHValidator
-    }
-    ];
+    },
+];
 
 
     module.exports = {
