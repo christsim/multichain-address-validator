@@ -13,6 +13,7 @@ var XLMValidator = require('./stellar_validator');
 var EOSValidator = require('./eos_validator');
 var XTZValidator = require('./tezos_validator');
 var USDTValidator = require('./usdt_validator');
+var AlgoValidator = require('./algo_validator');
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 var CURRENCIES = [{
@@ -547,6 +548,11 @@ var CURRENCIES = [{
         symbol: 'cusd',
         validator: ETHValidator
     },
+    {
+        name: 'Algorand',
+        symbol: 'algo',
+        validator: AlgoValidator
+    }
 ];
 
 

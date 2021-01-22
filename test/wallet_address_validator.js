@@ -608,6 +608,12 @@ describe('WAValidator.validate()', function () {
             valid('0x6d57D1697277C9Bb01A5265EC00558A639CA308A', 'VET');
         });
 
+        it('should return true for correct algo addresses', function () {
+            valid('GONISIUAYDOMHM7VURRAAAP5H6OAWRRBCPXEIOZO3QI7TZKR5GTAQ7WK7Y', 'algo');
+            valid('LCRDY3LYAANTVS3XRHEHWHGXRTKZYVTX55P5IA2AT5ZDJ4CWZFFZIKVHLI', 'algo')
+            valid('SP745JJR4KPRQEXJZHVIEN736LYTL2T2DFMG3OIIFJBV66K73PHNMDCZVM', 'algo')
+            valid('AKHSHWO2TUWE53RMVG6ZUBNAEX6MTYPT76TCIDCDWYUUTK6HCJTZS2HDQU', 'algo')
+        });
     });
 
     describe('invalid results', function () {
