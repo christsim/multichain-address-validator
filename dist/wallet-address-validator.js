@@ -11819,6 +11819,7 @@ var EOSValidator = require('./eos_validator');
 var XTZValidator = require('./tezos_validator');
 var USDTValidator = require('./usdt_validator');
 var AlgoValidator = require('./algo_validator');
+var DotValidator = require('./dot_validator');
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 var CURRENCIES = [{
@@ -12357,6 +12358,11 @@ var CURRENCIES = [{
         name: 'Algorand',
         symbol: 'algo',
         validator: AlgoValidator
+    },
+    {
+        name: 'Polkadot',
+        symbol: 'dot',
+        validator: DotValidator
     }
 ];
 
@@ -12385,7 +12391,68 @@ var CURRENCIES = [{
 //
 
 
-},{"./ada_validator":37,"./algo_validator":38,"./bch_validator":39,"./bitcoin_validator":40,"./eos_validator":52,"./ethereum_validator":53,"./lisk_validator":54,"./monero_validator":55,"./nano_validator":56,"./nem_validator":57,"./ripple_validator":58,"./siacoin_validator":59,"./stellar_validator":60,"./tezos_validator":61,"./tron_validator":62,"./usdt_validator":63}],52:[function(require,module,exports){
+},{"./ada_validator":37,"./algo_validator":38,"./bch_validator":39,"./bitcoin_validator":40,"./dot_validator":52,"./eos_validator":53,"./ethereum_validator":54,"./lisk_validator":55,"./monero_validator":56,"./nano_validator":57,"./nem_validator":58,"./ripple_validator":59,"./siacoin_validator":60,"./stellar_validator":61,"./tezos_validator":62,"./tron_validator":63,"./usdt_validator":64}],52:[function(require,module,exports){
+const cryptoUtils = require('./crypto/utils');
+
+// from https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)
+const addressFormats = [
+    { addressLength: 3, accountIndexLength: 1, checkSumLength: 1 },
+    { addressLength: 4, accountIndexLength: 2, checkSumLength: 1 },
+    { addressLength: 5, accountIndexLength: 2, checkSumLength: 2 },
+    { addressLength: 6, accountIndexLength: 4, checkSumLength: 1 },
+    { addressLength: 7, accountIndexLength: 4, checkSumLength: 2 },
+    { addressLength: 8, accountIndexLength: 4, checkSumLength: 3 },
+    { addressLength: 9, accountIndexLength: 4, checkSumLength: 4 },
+    { addressLength: 10, accountIndexLength: 8, checkSumLength: 1 },
+    { addressLength: 11, accountIndexLength: 8, checkSumLength: 2 },
+    { addressLength: 12, accountIndexLength: 8, checkSumLength: 3 },
+    { addressLength: 13, accountIndexLength: 8, checkSumLength: 4 },
+    { addressLength: 14, accountIndexLength: 8, checkSumLength: 5 },
+    { addressLength: 15, accountIndexLength: 8, checkSumLength: 6 },
+    { addressLength: 16, accountIndexLength: 8, checkSumLength: 7 },
+    { addressLength: 17, accountIndexLength: 8, checkSumLength: 8 },
+    { addressLength: 34, accountIndexLength: 32, checkSumLength: 2 },
+];
+
+module.exports = {
+    isValidAddress: function (address, currency, opts = {}) {
+        const { networkType = 'prod' } = opts;
+
+        return this.verifyChecksum(address)
+    },
+
+    verifyChecksum: function (address) {
+
+        try {
+            const preImage = '53533538505245'
+
+            const decoded = cryptoUtils.base58(address);
+            const addressType = cryptoUtils.byteArray2hexStr(decoded.slice(0, 1));
+            const addressAndChecksum = decoded.slice(1)
+
+            // get the address format
+            const addressFormat = addressFormats.find(af => af.addressLength === addressAndChecksum.length);
+
+            if (!addressFormat) {
+                throw new Erorr('Invalid address length');
+            }
+
+            const decodedAddress = cryptoUtils.byteArray2hexStr(addressAndChecksum.slice(0, addressFormat.accountIndexLength));
+            const checksum = cryptoUtils.byteArray2hexStr(addressAndChecksum.slice(-addressFormat.checkSumLength));
+
+            const calculatedHash = cryptoUtils
+                .blake2b(preImage + addressType + decodedAddress, 64)
+                .substr(0, addressFormat.checkSumLength * 2)
+                .toUpperCase();
+
+            return calculatedHash == checksum;
+        } catch(err) {
+            return false;
+        }
+    }
+}
+
+},{"./crypto/utils":50}],53:[function(require,module,exports){
 function isValidEOSAddress (address, currency, networkType) {
   var regex = /^[a-z0-9.]+$/g // Must be numbers, lowercase letters and decimal points only
   if (address.search(regex) !== -1 && address.length === 12) {
@@ -12401,7 +12468,7 @@ module.exports = {
   }
 }
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils');
 
 module.exports = {
@@ -12437,7 +12504,7 @@ module.exports = {
     }
 };
 
-},{"./crypto/utils":50}],54:[function(require,module,exports){
+},{"./crypto/utils":50}],55:[function(require,module,exports){
 (function (Buffer){(function (){
 var cryptoUtils = require('./crypto/utils');
 
@@ -12459,7 +12526,7 @@ module.exports = {
     }
 };
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./crypto/utils":50,"buffer":4}],55:[function(require,module,exports){
+},{"./crypto/utils":50,"buffer":4}],56:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var cnBase58 = require('./crypto/cnBase58')
 
@@ -12525,7 +12592,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/cnBase58":47,"./crypto/utils":50}],56:[function(require,module,exports){
+},{"./crypto/cnBase58":47,"./crypto/utils":50}],57:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils');
 var baseX = require('base-x');
 
@@ -12554,7 +12621,7 @@ module.exports = {
     }
 };
 
-},{"./crypto/utils":50,"base-x":1}],57:[function(require,module,exports){
+},{"./crypto/utils":50,"base-x":1}],58:[function(require,module,exports){
 (function (Buffer){(function (){
 var cryptoUtils = require('./crypto/utils');
 
@@ -12581,7 +12648,7 @@ module.exports = {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./crypto/utils":50,"buffer":4}],58:[function(require,module,exports){
+},{"./crypto/utils":50,"buffer":4}],59:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils');
 var baseX = require('base-x');
 
@@ -12611,7 +12678,7 @@ module.exports = {
     }
 };
 
-},{"./crypto/utils":50,"base-x":1}],59:[function(require,module,exports){
+},{"./crypto/utils":50,"base-x":1}],60:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var isEqual = require('lodash.isequal')
 
@@ -12641,7 +12708,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":50,"lodash.isequal":34}],60:[function(require,module,exports){
+},{"./crypto/utils":50,"lodash.isequal":34}],61:[function(require,module,exports){
 var baseX = require('base-x');
 var crc = require('crc');
 var cryptoUtils = require('./crypto/utils');
@@ -12688,7 +12755,7 @@ var ed25519PublicKeyVersionByte = (6 << 3);
          return computedChecksum === checksum
     }
 };
-},{"./crypto/utils":50,"base-x":1,"crc":30}],61:[function(require,module,exports){
+},{"./crypto/utils":50,"base-x":1,"crc":30}],62:[function(require,module,exports){
 const base58 = require('./crypto/base58');
 const cryptoUtils = require('./crypto/utils');
 
@@ -12726,7 +12793,7 @@ module.exports = {
     isValidAddress
 };
 
-},{"./crypto/base58":42,"./crypto/utils":50}],62:[function(require,module,exports){
+},{"./crypto/base58":42,"./crypto/utils":50}],63:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils');
 
 function decodeBase58Address(base58Sting) {
@@ -12790,7 +12857,7 @@ module.exports = {
     }
 };
 
-},{"./crypto/utils":50}],63:[function(require,module,exports){
+},{"./crypto/utils":50}],64:[function(require,module,exports){
 var BTCValidator = require('./bitcoin_validator');
 var ETHValidator = require('./ethereum_validator');
 
@@ -12813,7 +12880,7 @@ module.exports = {
     }
 };
 
-},{"./bitcoin_validator":40,"./ethereum_validator":53}],64:[function(require,module,exports){
+},{"./bitcoin_validator":40,"./ethereum_validator":54}],65:[function(require,module,exports){
 var currencies = require('./currencies');
 
 var DEFAULT_CURRENCY_NAME = 'bitcoin';
@@ -12840,5 +12907,5 @@ module.exports = {
     }
 };
 
-},{"./currencies":51}]},{},[64])(64)
+},{"./currencies":51}]},{},[65])(65)
 });

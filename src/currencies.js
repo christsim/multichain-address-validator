@@ -14,6 +14,7 @@ var EOSValidator = require('./eos_validator');
 var XTZValidator = require('./tezos_validator');
 var USDTValidator = require('./usdt_validator');
 var AlgoValidator = require('./algo_validator');
+var DotValidator = require('./dot_validator');
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 var CURRENCIES = [{
@@ -552,6 +553,11 @@ var CURRENCIES = [{
         name: 'Algorand',
         symbol: 'algo',
         validator: AlgoValidator
+    },
+    {
+        name: 'Polkadot',
+        symbol: 'dot',
+        validator: DotValidator
     }
 ];
 
