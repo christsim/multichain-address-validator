@@ -15,6 +15,7 @@ var XTZValidator = require('./tezos_validator');
 var USDTValidator = require('./usdt_validator');
 var AlgoValidator = require('./algo_validator');
 var DotValidator = require('./dot_validator');
+var BIP173Validator = require('./bip173_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 var CURRENCIES = [{
@@ -424,7 +425,8 @@ var CURRENCIES = [{
     }, {
         name: 'Crypto.com Coin',
         symbol: 'cro',
-        validator: ETHValidator,
+        bech32Hrp: { prod: ['cro'], testnet: ['tcro']},
+        validator: BIP173Validator,
     }, {
         name: 'Multi-collateral DAI',
         symbol: 'dai',
