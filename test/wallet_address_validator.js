@@ -814,6 +814,9 @@ describe('WAValidator.validate()', function () {
             valid('6ZRCB7AAqGre6c72PRz3MHLC73VMYvJ8bi9KHf1HFpNk', 'sol');
             valid('HgyXhqapicB8zoyyFQ23oUwwFrBACDyDc7bqUuvnEELM', 'sol');
             valid('833XorXTTx5iya5B3Tr6iqEs9GbRuvVfwyLCP2vpdzhq', 'sol', 'testnet');
+
+            valid('69UwBV4LPg7hHUS5JXiXyfgVnESmDKe8KJppsLj8pRU', 'sol');
+            valid('G4qGCGF4vWGPzYi2pxc2Djvgv3j8NiWaHQMgTVebCX6W', 'sol');
         });
 
     });
