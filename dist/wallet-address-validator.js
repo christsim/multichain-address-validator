@@ -8376,7 +8376,7 @@ module.exports = {
                 return false;
             }
 
-            if (currency.minLength && (address.length <= currency.minLength)) {
+            if (currency.minLength && (address.length < currency.minLength)) {
                 return false;
             }
 
