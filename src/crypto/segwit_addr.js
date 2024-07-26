@@ -87,21 +87,17 @@ function encode (hrp, version, program) {
 
 /////////////////////////////////////////////////////
 
-var DEFAULT_NETWORK_TYPE = 'prod'
+function isValidAddress(address, networkType, opts = {}) {
 
-function isValidAddress(address, currency, opts = {}) {
-
-    if(!currency.bech32Hrp || currency.bech32Hrp.length === 0) {
+    if(!opts.bech32Hrp || opts.bech32Hrp.length === 0) {
         return false;
     }
 
-    const { networkType = DEFAULT_NETWORK_TYPE} = opts;
-
     var correctBech32Hrps;
-    if (networkType === 'prod' || networkType === 'testnet') {
-        correctBech32Hrps = currency.bech32Hrp[networkType];
-    } else if(currency.bech32Hrp) {
-        correctBech32Hrps = currency.bech32Hrp.prod.concat(currency.bech32Hrp.testnet)
+    if (networkType === 'mainnet' || networkType === 'testnet') {
+        correctBech32Hrps = opts.bech32Hrp[networkType];
+    } else if(opts.bech32Hrp) {
+        correctBech32Hrps = opts.bech32Hrp.mainnet.concat(opts.bech32Hrp.testnet)
     } else {
         return false;
     }
