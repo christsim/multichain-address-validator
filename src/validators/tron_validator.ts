@@ -1,5 +1,6 @@
 import {Address} from '../types'
 import cryptoUtils from '../crypto/utils'
+import {getAddress} from '../helpers'
 
 function decodeBase58Address(base58String: string) {
     if (typeof (base58String) !== 'string') {
@@ -9,7 +10,7 @@ function decodeBase58Address(base58String: string) {
         return false;
     }
 
-    let address: string
+    let address: number[]
     try {
         address = cryptoUtils.base58(base58String);
     } catch (e) {
@@ -41,19 +42,18 @@ const DefaultTronValidatorOpts: TronValidatorOpts = {
 }
 
 export default (opts?: TronValidatorOpts) => ({
-    isValidAddress: function (mainAddress: Address) {
+    isValidAddress: function (address: Address) {
         const _opts = {...DefaultTronValidatorOpts, ...opts}
-        mainAddress = ((mainAddress as any).address ?? mainAddress) as string
-        const address = decodeBase58Address(mainAddress);
+        const addr = decodeBase58Address(getAddress(address));
 
-        if (!address) {
+        if (!addr) {
             return false;
         }
 
-        if (address.length !== 21) {
+        if (addr.length !== 21) {
             return false;
         }
 
-        return _opts.addressTypes.includes(address[0].toString());
+        return _opts.addressTypes.includes(addr[0].toString());
     }
 });

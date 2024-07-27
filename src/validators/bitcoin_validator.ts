@@ -3,6 +3,7 @@ import segwit from '../crypto/segwit_addr'
 import cryptoUtils from '../crypto/utils'
 
 import {Address, NetworkType} from '../types'
+import {getAddress} from '../helpers'
 
 function getDecoded(address: string) {
     try {
@@ -100,8 +101,8 @@ const DefaultBTCValidatorOpts: BTCValidatorOpts = {
 
 export default (networkType = NetworkType.MainNet, opts?: Partial<BTCValidatorOpts>) => ({
     isValidAddress(address: Address): boolean {
-        address = ((address as any).address ?? address) as string
+        const addr = getAddress(address)
         const _opts = {...DefaultBTCValidatorOpts, ...opts}
-        return isValidP2PKHandP2SHAddress(address, _opts, networkType) || segwit.isValidAddress(address, networkType, _opts);
+        return isValidP2PKHandP2SHAddress(addr, _opts, networkType) || segwit.isValidAddress(addr, networkType, _opts);
     }
 })

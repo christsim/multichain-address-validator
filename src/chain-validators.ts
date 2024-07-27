@@ -122,8 +122,8 @@ const chainValidators: ChainValidators = {
 }
 
 export function getValidatorForChain(chain: Chain): Validator | undefined {
-    const chainName = (chain as any).chain ?? chain
-    const networkType = (chain as any).networkType ?? NetworkType.MainNet
+    const chainName = (chain as any).chain || chain
+    const networkType = (chain as any).networkType || NetworkType.MainNet
 
     const key = Object.keys(chainValidators).find(key =>
         key.toUpperCase() === chainName.toUpperCase() || chainValidators[key]
@@ -132,5 +132,5 @@ export function getValidatorForChain(chain: Chain): Validator | undefined {
             ?.includes(chainName.toUpperCase())
     )
 
-    return chainValidators[key]?.validator[networkType] ?? chainValidators[key]?.validator
+    return chainValidators[key]?.validator[networkType] || chainValidators[key]?.validator
 }

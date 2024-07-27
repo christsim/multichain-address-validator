@@ -2,6 +2,7 @@ import baseX from 'base-x'
 
 import cryptoUtils from '../crypto/utils'
 import {Address} from '../types'
+import {getAddress} from '../helpers'
 
 const ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz';
 
@@ -13,8 +14,8 @@ export default {
      * ripple address validation
      */
     isValidAddress: function (address: Address) {
-        const addr = ((address as any).address ?? address) as string
-        const destinationTag = (address as any).destinationTag ?? null
+        const addr = getAddress(address)
+        const destinationTag = (address as any).destinationTag
 
         const validAddress = regexp.test(addr) && this.verifyChecksum(addr);
 

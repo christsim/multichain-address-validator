@@ -1,21 +1,22 @@
 import cryptoUtils from '../crypto/utils'
 import {Address} from '../types'
+import {getAddress} from '../helpers'
 
 export default {
     isValidAddress: function (address: Address) {
-        address = ((address as any).address ?? address) as string
-        if (!/^0x[0-9a-fA-F]{40}$/.test(address)) {
+        const addr = getAddress(address)
+        if (!/^0x[0-9a-fA-F]{40}$/.test(addr)) {
             // Check if it has the basic requirements of an address
             return false;
         }
 
-        if (/^0x[0-9a-f]{40}$/.test(address) || /^0x?[0-9A-F]{40}$/.test(address)) {
+        if (/^0x[0-9a-f]{40}$/.test(addr) || /^0x?[0-9A-F]{40}$/.test(addr)) {
             // If it's all small caps or all caps, return true
             return true;
         }
 
         // Otherwise check each case
-        return this.verifyChecksum(address);
+        return this.verifyChecksum(addr);
     },
     verifyChecksum: function (address: string) {
         // Check each case

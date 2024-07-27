@@ -2,6 +2,7 @@ import cryptoUtils from '../crypto/utils'
 import bech32 from '../crypto/bech32'
 import {Address, NetworkType} from '../types'
 import BTCValidator from './bitcoin_validator'
+import {getAddress} from '../helpers'
 
 function validateAddress(address: string, networkType: NetworkType, opts: BCHValidatorOpts) {
     const regexp = new RegExp(opts.regexp);
@@ -63,8 +64,8 @@ const DefaultBCHValidatorOpts: BCHValidatorOpts = {
 
 export default (networkType = NetworkType.MainNet, opts?: BCHValidatorOpts) => ({
     isValidAddress: function (address: Address) {
-        address = ((address as any).address ?? address) as string
+        const addr = getAddress(address)
         const _opts = {...DefaultBCHValidatorOpts, ...opts}
-        return validateAddress(address, networkType, _opts) || BTCValidator(networkType, _opts).isValidAddress(address);
+        return validateAddress(addr, networkType, _opts) || BTCValidator(networkType, _opts).isValidAddress(address);
     }
 })
