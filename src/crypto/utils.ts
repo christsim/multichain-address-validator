@@ -1,14 +1,17 @@
+import {Buffer} from 'buffer'
+import { sha256 } from '@noble/hashes/sha256'
+import { sha512, sha512_256 } from '@noble/hashes/sha512'
+import { bytesToHex } from '@noble/hashes/utils'
+
 import base32 from './base32'
 import base58 from './base58'
 
-var jsSHA = require('jssha');
-var sha512256 = require('js-sha512').sha512_256
-var Blake256 = require('./blake256');
-var keccak256 = require('./sha3')['keccak256'];
-var Blake2B = require('./blake2b');
+import Blake256 from './blake256'
+import { keccak256 } from './sha3'
+import Blake2B from './blake2b'
 
 function numberToHex(number: number, length: number) {
-    var hex = number.toString(16);
+    let hex = number.toString(16);
     if (hex.length % 2 === 1) {
         hex = '0' + hex;
     }
@@ -58,7 +61,7 @@ function byteArray2hexStr(byteArray: number[]) {
 }
 
 function hexStr2byteArray(str: string) {
-    const byteArray = Array();
+    const byteArray = new Uint8Array(str.length/2);
     let d = 0;
     let i = 0;
     let j = 0;
@@ -90,21 +93,22 @@ export default {
         return hex;
     },
     sha256: function (payload: any, format = 'HEX') {
-        const sha = new jsSHA('SHA-256', format);
-        sha.update(payload);
-        return sha.getHash(format);
+        // const sha = new JsSHA('SHA-256', format);
+        // sha.update(payload);
+        // return sha.getHash(format);
+        return bytesToHex(sha256(hexStr2byteArray(payload) as any))
     },
     sha256x2: function (buffer: any, format = 'HEX') {
         return this.sha256(this.sha256(buffer, format), format);
     },
     sha256Checksum: function (payload: any) {
-        return this.sha256(this.sha256(payload)).substr(0, 8);
+        return this.sha256(this.sha256(payload)).slice(0, 8);
+    },
+    sha512: function(payload: any, format = 'HEX') {
+        return bytesToHex(sha512(payload))
     },
     sha512_256: function (payload: any, format = 'HEX') {
-        const hash = sha512256.create()
-        // @ts-expect-error
-        hash.update(Buffer.from(payload, format))
-        return hash.hex().toUpperCase();
+        return bytesToHex(sha512_256(hexStr2byteArray(payload)))
     },
     blake256: function (hexString: string) {
         return new Blake256().update(hexString, 'hex').digest('hex');

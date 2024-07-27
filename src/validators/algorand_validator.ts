@@ -17,7 +17,7 @@ function verifyChecksum(address: string) {
         // Hash Address - Checksum
         const code = cryptoUtils.sha512_256(cryptoUtils.byteArray2hexStr(addr as any)).substr(-ALGORAND_CHECKSUM_BYTE_LENGTH * 2);
 
-        return code === checksum
+        return code.toUpperCase() === checksum
     }
 }
 

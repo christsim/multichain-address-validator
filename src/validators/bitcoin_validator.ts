@@ -4,6 +4,7 @@ import cryptoUtils from '../crypto/utils'
 
 import {Address, NetworkType} from '../types'
 import {getAddress} from '../helpers'
+import {Buffer} from 'buffer'
 
 function getDecoded(address: string) {
     try {

@@ -237,6 +237,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.23.0.tgz#db44a6a08520b5f25bbe409f34a59f2d4bcc7ced"
   integrity sha512-Arm+WgUFLUATuoxCJcahGuk6Yj9Pzxd6l11Zb/2aAuv5kWWvvfhLFo2fni4uSK5vzlUdCGZ/BdV5tH8klj8p8g==
 
+"@noble/hashes@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.4.0.tgz#45814aa329f30e4fe0ba49426f49dfccdd066426"
+  integrity sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -339,11 +344,6 @@ buffer@^6.0.3:
   dependencies:
     base64-js "^1.3.1"
     ieee754 "^1.2.1"
-
-bundle@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/bundle/-/bundle-2.1.0.tgz#ab47ccc48eb688f706e6ecd323d01db6854aa25e"
-  integrity sha512-d7TeT8m2HuymDjSEmMppWe/h5SSPPUZkaWKrAofx6gNXDdZ3FL/81oOTGPG+LIaZbNr9m4rtUi98Yw0Q1vHIIw==
 
 camelcase@^6.0.0:
   version "6.2.0"
@@ -660,22 +660,12 @@ is-unicode-supported@^0.1.0:
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-0.1.0.tgz#3f26c76a809593b52bfa2ecb5710ed2779b522a7"
   integrity sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==
 
-js-sha512@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/js-sha512/-/js-sha512-0.9.0.tgz#ed569aa1e4bdaf0b83363c29db1ab87b1192d9ae"
-  integrity sha512-mirki9WS/SUahm+1TbAPkqvbCiCfOAAsyXeHxK1UkullnJVVqoJG2pL9ObvT05CN+tM7fxhfYm0NbXn+1hWoZg==
-
 js-yaml@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.0.tgz#c1fb65f8f5017901cdd2c951864ba18458a10602"
   integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
   dependencies:
     argparse "^2.0.1"
-
-jssha@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jssha/-/jssha-3.3.1.tgz#c5b7fc7fb9aa745461923b87df0e247dd59c7ea8"
-  integrity sha512-VCMZj12FCFMQYcFLPRm/0lOBbLi8uM2BhXPTqw3U4YAfs4AZfiApOoBLoN8cQE60Z50m1MYMTQVCfgF/KaCVhQ==
 
 locate-path@^6.0.0:
   version "6.0.0"

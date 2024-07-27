@@ -331,18 +331,16 @@
     "scripts": {
         "build": "tsc",
         "bundle": "esbuild src/wallet_address_validator.ts --bundle --outfile=dist/wallet-address-validator.js",
-        "bundle:minify": "esbuild src/wallet_address_validator.ts --bundle --minify --outfile=dist/wallet-address-validator.min.js",
+        "bundle:minify": "esbuild src/wallet_address_validator.ts --bundle --minify --sourcemap --analyze --outfile=dist/wallet-address-validator.min.js",
         "test": "mocha --import=tsx test/wallet_address_validator.test.ts",
         "start": "npm run bundle && npm run bundle:minify && npm test"
     },
     "dependencies": {
+        "@noble/hashes": "^1.4.0",
         "base-x": "^4.0.0",
         "buffer": "^6.0.3",
-        "bundle": "^2.1.0",
         "cbor-js": "^0.1.0",
         "crc": "^4.3.2",
-        "js-sha512": "^0.9.0",
-        "jssha": "^3.3.1",
         "lodash.isequal": "^4.5.0"
     },
     "devDependencies": {
