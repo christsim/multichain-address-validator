@@ -2,12 +2,12 @@ import {Buffer} from 'buffer'
 import { sha256 } from '@noble/hashes/sha256'
 import { sha512, sha512_256 } from '@noble/hashes/sha512'
 import { bytesToHex } from '@noble/hashes/utils'
+import { keccak_256 } from '@noble/hashes/sha3'
 
 import base32 from './base32'
 import base58 from './base58'
 
 import Blake256 from './blake256'
-import { keccak256 } from './sha3'
 import Blake2B from './blake2b'
 
 function numberToHex(number: number, length: number) {
@@ -29,7 +29,7 @@ function isHexChar(c: string) {
 
 /* Convert a hex char to value */
 function hexChar2byte(c: string) {
-    var d = 0;
+    let d = 0;
     if (c >= 'A' && c <= 'F') {
         d = c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
     }
@@ -44,8 +44,8 @@ function hexChar2byte(c: string) {
 
 /* Convert a byte to string */
 function byte2hexStr(byte: number) {
-    var hexByteMap = "0123456789ABCDEF";
-    var str = "";
+    const hexByteMap = "0123456789ABCDEF";
+    let str = "";
     str += hexByteMap.charAt(byte >> 4);
     str += hexByteMap.charAt(byte & 0x0f);
     return str;
@@ -53,7 +53,8 @@ function byte2hexStr(byte: number) {
 
 function byteArray2hexStr(byteArray: number[]) {
     let str = "";
-    for (var i = 0; i < (byteArray.length - 1); i++) {
+    let i = 0
+    for (i = 0; i < (byteArray.length - 1); i++) {
         str += byte2hexStr(byteArray[i]);
     }
     str += byte2hexStr(byteArray[i]);
@@ -93,9 +94,6 @@ export default {
         return hex;
     },
     sha256: function (payload: any, format = 'HEX') {
-        // const sha = new JsSHA('SHA-256', format);
-        // sha.update(payload);
-        // return sha.getHash(format);
         return bytesToHex(sha256(hexStr2byteArray(payload) as any))
     },
     sha256x2: function (buffer: any, format = 'HEX') {
@@ -120,10 +118,10 @@ export default {
         return new Blake2B(outlen).update(Buffer.from(hexString, 'hex')).digest('hex');
     },
     keccak256: function (hexString: string) {
-        return keccak256(hexString);
+        return bytesToHex(keccak_256(hexString));
     },
     keccak256Checksum: function (payload: any) {
-        return keccak256(payload).toString().substr(0, 8);
+        return this.keccak256(payload).toString().substr(0, 8);
     },
     blake2b256: function (hexString: string) {
         return new Blake2B(32).update(Buffer.from(hexString, 'hex'), 32).digest('hex');
