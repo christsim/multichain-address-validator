@@ -1,6 +1,6 @@
-import cryptoUtils from '../crypto/utils'
-import {Address} from '../types'
-import {getAddress} from '../helpers'
+import cryptoUtils from '../crypto/utils.js'
+import {Address} from '../types.js'
+import {getAddress} from '../helpers.js'
 
 // from https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)
 const addressFormats = [

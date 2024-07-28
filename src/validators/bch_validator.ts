@@ -1,8 +1,8 @@
-import cryptoUtils from '../crypto/utils'
-import bech32 from '../crypto/bech32'
-import {Address, NetworkType} from '../types'
-import BTCValidator from './bitcoin_validator'
-import {getAddress} from '../helpers'
+import cryptoUtils from '../crypto/utils.js'
+import bech32 from '../crypto/bech32.js'
+import {Address, NetworkType} from '../types.js'
+import BTCValidator from './bitcoin_validator.js'
+import {getAddress} from '../helpers.js'
 
 function validateAddress(address: string, opts: BCHValidatorOpts) {
     const regexp = new RegExp(opts.regexp);

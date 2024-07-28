@@ -1,4 +1,4 @@
-import base58 from '../crypto/base58'
+import base58 from '../crypto/base58.js'
 
 // simple base58 validator.  Just checks if it can be decoded.
 export default {

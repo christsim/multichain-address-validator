@@ -1,10 +1,10 @@
 import cbor from 'cbor-js'
 import CRC from 'crc'
 
-import base58 from '../crypto/base58'
-import BIP173Validator from './bip173_validator'
-import {Address} from '../types'
-import {getAddress} from '../helpers'
+import base58 from '../crypto/base58.js'
+import BIP173Validator from './bip173_validator.js'
+import {Address} from '../types.js'
+import {getAddress} from '../helpers.js'
 
 function getDecoded(address: string) {
     try {

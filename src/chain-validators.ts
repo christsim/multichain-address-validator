@@ -1,4 +1,4 @@
-import {Chain, NetworkType, Validator} from './types'
+import {Chain, NetworkType, Validator} from './types.js'
 
 import {
     AlgorandValidator,
@@ -17,7 +17,7 @@ import {
     TezosValidator,
     TronValidator,
     XLMValidator,
-} from './validators/index'
+} from './validators/index.js'
 
 
 type ChainValidators = Record<string, {

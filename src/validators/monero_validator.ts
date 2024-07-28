@@ -1,7 +1,7 @@
-import cryptoUtils from '../crypto/utils'
-import {Address, NetworkType} from '../types'
-import {getAddress} from '../helpers'
-import cnBase58 from '../crypto/cnBase58'
+import cryptoUtils from '../crypto/utils.js'
+import {Address, NetworkType} from '../types.js'
+import {getAddress} from '../helpers.js'
+import cnBase58 from '../crypto/cnBase58.js'
 
 
 const addressRegTest = new RegExp(

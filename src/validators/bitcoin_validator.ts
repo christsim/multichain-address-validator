@@ -1,9 +1,9 @@
-import base58 from '../crypto/base58'
-import segwit from '../crypto/segwit_addr'
-import cryptoUtils from '../crypto/utils'
+import base58 from '../crypto/base58.js'
+import segwit from '../crypto/segwit_addr.js'
+import cryptoUtils from '../crypto/utils.js'
 
-import {Address, NetworkType} from '../types'
-import {getAddress} from '../helpers'
+import {Address, NetworkType} from '../types.js'
+import {getAddress} from '../helpers.js'
 import {Buffer} from 'buffer'
 
 function getDecoded(address: string) {

@@ -1,5 +1,5 @@
-import {Address, Chain} from './types'
-import {getValidatorForChain} from './chain-validators'
+import {Address, Chain} from './types.js'
+import {getValidatorForChain} from './chain-validators.js'
 
 export function validate(address: Address, chain: Chain) {
     const validator = getValidatorForChain(chain)

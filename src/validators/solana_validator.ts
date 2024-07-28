@@ -1,6 +1,6 @@
-import base58Validator from './base58_validator';
-import {Address} from '../types'
-import {getAddress} from '../helpers'
+import base58Validator from './base58_validator.js';
+import {Address} from '../types.js'
+import {getAddress} from '../helpers.js'
 
 export default {
     isValidAddress: function (address: Address) {

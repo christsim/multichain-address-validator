@@ -1,8 +1,8 @@
 import {Buffer} from 'buffer'
 
-import cryptoUtils from '../crypto/utils'
-import {Address} from '../types'
-import {getAddress} from '../helpers'
+import cryptoUtils from '../crypto/utils.js'
+import {Address} from '../types.js'
+import {getAddress} from '../helpers.js'
 
 export default {
     isValidAddress(address: Address) {

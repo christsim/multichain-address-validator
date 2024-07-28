@@ -26,7 +26,7 @@ const encodings = {
     BECH32M: "bech32m",
 };
 
-module.exports = {
+export default {
     decode: decode,
     encode: encode,
     encodings: encodings,

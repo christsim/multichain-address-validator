@@ -1,6 +1,6 @@
-import {Address} from '../types'
-import cryptoUtils from '../crypto/utils'
-import {getAddress} from '../helpers'
+import {Address} from '../types.js'
+import cryptoUtils from '../crypto/utils.js'
+import {getAddress} from '../helpers.js'
 
 function decodeBase58Address(base58String: string) {
     if (typeof (base58String) !== 'string') {

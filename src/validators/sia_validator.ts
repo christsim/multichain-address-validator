@@ -1,7 +1,8 @@
-import cryptoUtils from '../crypto/utils'
 import isEqual from 'lodash.isequal'
-import {Address} from '../types'
-import {getAddress} from '../helpers'
+
+import cryptoUtils from '../crypto/utils.js'
+import {Address} from '../types.js'
+import {getAddress} from '../helpers.js'
 
 function hexToBytes(hex: string) {
     const bytes = []

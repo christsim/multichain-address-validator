@@ -1,5 +1,5 @@
-import {Address} from '../types'
-import {getAddress} from '../helpers'
+import {Address} from '../types.js'
+import {getAddress} from '../helpers.js'
 
 function isValidEOSAddress(address: string) {
     const regex = /^[a-z0-9.]+$/g // Must be numbers, lowercase letters and decimal points only

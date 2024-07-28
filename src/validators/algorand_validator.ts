@@ -1,6 +1,6 @@
-import cryptoUtils from '../crypto/utils'
-import {Address} from '../types'
-import {getAddress} from '../helpers'
+import cryptoUtils from '../crypto/utils.js'
+import {Address} from '../types.js'
+import {getAddress} from '../helpers.js'
 
 const ALGORAND_CHECKSUM_BYTE_LENGTH = 4;
 const ALGORAND_ADDRESS_LENGTH = 58;

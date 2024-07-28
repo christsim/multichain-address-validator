@@ -4,11 +4,11 @@ import { sha512, sha512_256 } from '@noble/hashes/sha512'
 import { bytesToHex } from '@noble/hashes/utils'
 import { keccak_256 } from '@noble/hashes/sha3'
 
-import base32 from './base32'
-import base58 from './base58'
+import base32 from './base32.js'
+import base58 from './base58.js'
 
-import Blake256 from './blake256'
-import Blake2B from './blake2b'
+import Blake256 from './blake256.js'
+import Blake2B from './blake2b.js'
 
 function numberToHex(number: number, length: number) {
     let hex = number.toString(16);

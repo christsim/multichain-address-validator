@@ -1,4 +1,4 @@
-import bech32 from '../crypto/bech32'
+import bech32 from '../crypto/bech32.js'
 
 interface Bip173Options {
     bech32Hrp: string[]

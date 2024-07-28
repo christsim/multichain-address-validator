@@ -1,8 +1,8 @@
 import baseX from 'base-x'
 
-import cryptoUtils from '../crypto/utils'
-import {Address} from '../types'
-import {getAddress} from '../helpers'
+import cryptoUtils from '../crypto/utils.js'
+import {Address} from '../types.js'
+import {getAddress} from '../helpers.js'
 
 const ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz';
 

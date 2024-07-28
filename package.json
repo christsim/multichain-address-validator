@@ -324,6 +324,7 @@
         "url": "https://github.com/christsim/multichain-address-validator.git"
     },
     "main": "dist/multichain-address-validator.js",
+    "type": "module",
     "engines": {
         "node": ">=16.0.0"
     },

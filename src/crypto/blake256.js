@@ -183,4 +183,4 @@ Blake256.prototype.digest = function (encoding) {
     return buffer.toString(encoding);
 }
 
-module.exports = Blake256;
+export default Blake256;
