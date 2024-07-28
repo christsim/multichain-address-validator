@@ -1,11 +1,8 @@
-// const isNode = typeof module !== 'undefined' && typeof module.exports !== 'undefined'
-// const WAValidator = isNode ? require('../src/wallet_address_validator') : (window as any).WAValidator
-// const chai = isNode ? require('chai') : (window as any).chai,
-
 import {describe, it} from 'mocha'
 import {expect} from 'chai'
-import {validate} from '../src/multichain-address-validator'
-import {Address, Chain, NetworkType} from '../src/types'
+
+import {validate} from '../src/multichain-address-validator.js'
+import {Address, Chain, NetworkType} from '../src/types.js'
 // @ts-ignore
 import addresses from './addresses/addresses'
 
@@ -448,15 +445,6 @@ describe('multichain address validator', function () {
 //             valid('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359', 'YFI');
 //             valid('0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB', 'YFI');
 //             valid('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', 'YFI');
-//         });
-//
-//         it('should return true for correct binance coin addresses', function () {
-//             valid('0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF', 'binance');
-//             valid('0xa00354276d2fC74ee91e37D085d35748613f4748', 'binance');
-//             valid('0xAff4d6793F584a473348EbA058deb8caad77a288', 'BNB');
-//             valid('0xc6d9d2cd449a754c494264e1809c50e34d64562b', 'bnb');
-//             valid('0x52908400098527886E0F7030069857D2E4169EE7', 'BNB');
-//             valid('0x8617E340B3D01FA5F11F306F4090FD50E238070D', 'bnb');
 //         });
 //
 //         it('should return true for correct dash addresses', function () {
