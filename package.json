@@ -330,9 +330,9 @@
     "engineStrict": true,
     "scripts": {
         "build": "tsc",
-        "bundle": "esbuild src/wallet_address_validator.ts --bundle --outfile=dist/wallet-address-validator.js",
-        "bundle:minify": "esbuild src/wallet_address_validator.ts --bundle --minify --sourcemap --analyze --outfile=dist/wallet-address-validator.min.js",
-        "test": "mocha --import=tsx test/wallet_address_validator.test.ts",
+        "bundle": "esbuild src/multichain-address-validator.ts --bundle --outfile=dist/multichain-address-validator.js",
+        "bundle:minify": "esbuild src/multichain-address-validator.ts --bundle --minify --sourcemap --analyze --outfile=dist/multichain-address-validator.min.js",
+        "test": "mocha --import=tsx test/**.test.ts",
         "start": "npm run bundle && npm run bundle:minify && npm test"
     },
     "dependencies": {

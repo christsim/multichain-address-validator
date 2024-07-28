@@ -4,7 +4,7 @@
 
 import {describe, it} from 'mocha'
 import {expect} from 'chai'
-import {validate} from '../src/wallet_address_validator'
+import {validate} from '../src/multichain-address-validator'
 import {Address, Chain, NetworkType} from '../src/types'
 // @ts-ignore
 import addresses from './addresses/addresses'
@@ -118,9 +118,9 @@ const TestCases: Record<string, TestCase> = {
     }
 }
 
-describe('WAValidator.validate()', function () {
+describe('multichain address validator', function () {
 
-    it('valid results', function () {
+    it('should validate valid addresses for chains', function () {
         for (const chain in TestCases) {
             for (const c of [chain, ...TestCases[chain].alternatives]) {
                 for (const address of addresses[TestCases[chain].valid]) {
@@ -136,7 +136,7 @@ describe('WAValidator.validate()', function () {
         }
     })
 
-    it('invalid results', function () {
+    it('should invalidate invalid addresses for chains', function () {
         for (const chain in TestCases) {
             for (const c of [chain, ...TestCases[chain].alternatives]) {
                 const invalidChains = Object.keys(addresses)

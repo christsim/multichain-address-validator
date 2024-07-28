@@ -10158,7 +10158,7 @@
     return chainValidators[key]?.validator[networkType] || chainValidators[key]?.validator;
   }
 
-  // src/wallet_address_validator.ts
+  // src/multichain-address-validator.ts
   function validate(address, chain) {
     const validator = getValidatorForChain(chain);
     if (validator) {
