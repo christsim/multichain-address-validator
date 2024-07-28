@@ -124,7 +124,7 @@ export default {
         return this.keccak256(payload).toString().substr(0, 8);
     },
     blake2b256: function (hexString: string) {
-        return new Blake2B(32).update(Buffer.from(hexString, 'hex'), 32).digest('hex');
+        return new Blake2B(32).update(Buffer.from(hexString, 'hex')).digest('hex');
     },
     base58: base58.decode,
     byteArray2hexStr: byteArray2hexStr,

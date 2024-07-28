@@ -12,7 +12,8 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "strict": false,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "allowJs": true,
     },
     "exclude": [
         "./dist",
