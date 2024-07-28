@@ -4,7 +4,7 @@ import {Address, NetworkType} from '../types'
 import BTCValidator from './bitcoin_validator'
 import {getAddress} from '../helpers'
 
-function validateAddress(address: string, networkType: NetworkType, opts: BCHValidatorOpts) {
+function validateAddress(address: string, opts: BCHValidatorOpts) {
     const regexp = new RegExp(opts.regexp);
     let raw_address: string;
 
@@ -28,7 +28,7 @@ function validateAddress(address: string, networkType: NetworkType, opts: BCHVal
 
     const decoded = cryptoUtils.base32.b32decode(raw_address);
 
-    const prefix = networkType === NetworkType.MainNet
+    const prefix = opts.networkType === NetworkType.MainNet
         ? 'bitcoincash'
         : 'bchtest'
 
@@ -43,29 +43,24 @@ function validateAddress(address: string, networkType: NetworkType, opts: BCHVal
 }
 
 interface BCHValidatorOpts {
-    addressTypes?: {
-        mainnet: [string, string],
-        testnet: [string, string, string, string],
-    },
+    addressTypes: string[]
     expectedLength?: number
-    bech32Hrp?: {
-        mainnet: [string],
-        testnet: [string],
-    },
+    bech32Hrp?: [string],
     hashFunction?: 'blake256' | 'blake256keccak256' | 'keccak256' | 'sha256',
     regexp?: RegExp,
+    networkType: NetworkType,
 }
 
-const DefaultBCHValidatorOpts: BCHValidatorOpts = {
-    addressTypes: {mainnet: ['00', '05'], testnet: ['6f', 'c4', '3c', '26']},
-    bech32Hrp: {mainnet: ['bc'], testnet: ['tb']},
+const DefaultBCHValidatorOpts: Partial<BCHValidatorOpts> = {
+//     addressTypes: {mainnet: ['00', '05'], testnet: ['6f', 'c4', '3c', '26']},
+//     bech32Hrp: {mainnet: ['bc'], testnet: ['tb']},
     regexp: /^[qQpP][0-9a-zA-Z]{41}$/,
 }
 
-export default (networkType = NetworkType.MainNet, opts?: BCHValidatorOpts) => ({
+export default (opts: BCHValidatorOpts) => ({
     isValidAddress: function (address: Address) {
         const addr = getAddress(address)
         const _opts = {...DefaultBCHValidatorOpts, ...opts}
-        return validateAddress(addr, networkType, _opts) || BTCValidator(networkType, _opts).isValidAddress(address);
+        return validateAddress(addr, _opts) || BTCValidator(opts).isValidAddress(address);
     }
 })

@@ -87,20 +87,13 @@ function encode (hrp, version, program) {
 
 /////////////////////////////////////////////////////
 
-function isValidAddress(address, networkType, opts = {}) {
+function isValidAddress(address, opts = {}) {
 
     if(!opts.bech32Hrp || opts.bech32Hrp.length === 0) {
         return false;
     }
 
-    var correctBech32Hrps;
-    if (networkType === 'mainnet' || networkType === 'testnet') {
-        correctBech32Hrps = opts.bech32Hrp[networkType];
-    } else if(opts.bech32Hrp) {
-        correctBech32Hrps = opts.bech32Hrp.mainnet.concat(opts.bech32Hrp.testnet)
-    } else {
-        return false;
-    }
+    const correctBech32Hrps = opts.bech32Hrp;
 
     for(var chrp of correctBech32Hrps) {
         var ret = decode(chrp, address);

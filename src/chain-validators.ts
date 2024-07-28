@@ -41,37 +41,40 @@ const chainValidators: ChainValidators = {
     bitcoin: {
         alternatives: ['btc', 'omni'],
         validator: {
-            mainnet: BTCValidator(NetworkType.MainNet),
-            testnet: BTCValidator(NetworkType.TestNet),
+            mainnet: BTCValidator({
+                addressTypes: ['00', '05'],
+                bech32Hrp: ['bc'],
+            }),
+            testnet: BTCValidator({
+                addressTypes: ['6f', 'c4', '3c', '26'],
+                bech32Hrp: ['tb'],
+            }),
         },
     },
     'bitcoincash': {
         alternatives: ['bch', 'bitcoin-cash', 'bitcoin cash'],
         validator: {
-            mainnet: BCHValidator(NetworkType.MainNet),
-            testnet: BCHValidator(NetworkType.TestNet),
+            mainnet: BCHValidator({
+                addressTypes: ['00', '05'],
+                bech32Hrp: ['bc'],
+                networkType: NetworkType.MainNet,
+            }),
+            testnet: BCHValidator({
+                addressTypes: ['6f', 'c4', '3c', '26'],
+                bech32Hrp: ['tb'],
+                networkType: NetworkType.TestNet,
+            }),
         }
     },
     cardano: {
         alternatives: ['ada'],
-        validator: {
-            mainnet: CardanoValidator(NetworkType.MainNet, {
-                bech32Hrp: {mainnet: ['addr'], testnet: ['addr']}
-            }),
-            testnet: CardanoValidator(NetworkType.TestNet, {
-                bech32Hrp: {mainnet: ['addr'], testnet: ['addr']}
-            }),
-        }
+        validator: CardanoValidator,
     },
     doge: {
         alternatives: ['dogecoin'],
         validator: {
-            mainnet: BTCValidator(NetworkType.MainNet, {
-                addressTypes: {mainnet: ['1e', '16'], testnet: ['71', 'c4']}
-            }),
-            testnet: BTCValidator(NetworkType.MainNet, {
-                addressTypes: {mainnet: ['1e', '16'], testnet: ['71', 'c4']}
-            })
+            mainnet: BTCValidator({addressTypes: ['1e', '16']}),
+            testnet: BTCValidator({addressTypes: ['71', 'c4']}),
         }
     },
     eos: {validator: EOSValidator},
@@ -82,13 +85,13 @@ const chainValidators: ChainValidators = {
     litecoin: {
         alternatives: ['ltc'],
         validator: {
-            mainnet: BTCValidator(NetworkType.MainNet, {
-                addressTypes: {mainnet: ['30', '05', '32'], testnet: ['6f', 'c4', '3a']},
-                bech32Hrp: {mainnet: ['ltc'], testnet: ['tltc']},
+            mainnet: BTCValidator({
+                addressTypes: ['30', '05', '32'],
+                bech32Hrp: ['ltc'],
             }),
-            testnet: BTCValidator(NetworkType.TestNet, {
-                addressTypes: {mainnet: ['30', '05', '32'], testnet: ['6f', 'c4', '3a']},
-                bech32Hrp: {mainnet: ['ltc'], testnet: ['tltc']},
+            testnet: BTCValidator({
+                addressTypes: ['6f', 'c4', '3a'],
+                bech32Hrp: ['tltc']
             })
         }
     },

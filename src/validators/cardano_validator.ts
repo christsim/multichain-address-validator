@@ -3,7 +3,7 @@ import CRC from 'crc'
 
 import base58 from '../crypto/base58'
 import BIP173Validator from './bip173_validator'
-import {Address, NetworkType} from '../types'
+import {Address} from '../types'
 import {getAddress} from '../helpers'
 
 function getDecoded(address: string) {
@@ -35,18 +35,16 @@ function isValidAddressV1(address: string) {
     return crc == validCrc;
 }
 
-function isValidAddressShelley(address: string, networkType: NetworkType, opts: any) {
+function isValidAddressShelley(address: string, opts: { bech32Hrp: string [] }) {
     // shelley address are just bip 173 - bech32 addresses (https://cips.cardano.org/cips/cip4/)
-    return BIP173Validator.isValidAddress(address, networkType, opts);
+    return BIP173Validator.isValidAddress(address, opts);
 }
 
-interface AdaValidatorOptions {
-    bech32Hrp: { mainnet: string[], testnet: string[] }
-}
-
-export default (networkType: NetworkType, opts?: AdaValidatorOptions) => ({
+export default {
     isValidAddress(address: Address) {
         const addr = getAddress(address)
-        return isValidAddressV1(getAddress(addr)) || isValidAddressShelley(addr, networkType, opts);
+        return isValidAddressV1(getAddress(addr)) || isValidAddressShelley(addr, {
+            bech32Hrp: ['addr']
+        });
     }
-});
+}
