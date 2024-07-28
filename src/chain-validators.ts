@@ -26,14 +26,6 @@ type ChainValidators = Record<string, {
         mainnet: Validator,
         testnet: Validator,
     },
-    addressTypes?: {
-        prod: string[],
-        testnet: string[]
-    }
-    bech32Hrp?: {
-        prod: string[],
-        testnet: string[]
-    }
 }>
 
 const chainValidators: ChainValidators = {
