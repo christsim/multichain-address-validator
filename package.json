@@ -330,7 +330,7 @@
     "engineStrict": true,
     "scripts": {
         "build": "tsc",
-        "bundle": "esbuild src/multichain-address-validator.ts --bundle --minify --analyze --outfile=dist/multichain-address-validator.bundle.min.js",
+        "bundle": "tsx config/esbuild.ts",
         "test": "mocha --import=tsx test/**.test.ts",
         "start": "npm run build && npm run bundle && npm test"
     },
