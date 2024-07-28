@@ -323,17 +323,16 @@
         "type": "git",
         "url": "https://github.com/christsim/multichain-address-validator.git"
     },
-    "main": "src/wallet_address_validator",
+    "main": "dist/multichain-address-validator.js",
     "engines": {
         "node": ">=16.0.0"
     },
     "engineStrict": true,
     "scripts": {
         "build": "tsc",
-        "bundle": "esbuild src/multichain-address-validator.ts --bundle --outfile=dist/multichain-address-validator.js",
-        "bundle:minify": "esbuild src/multichain-address-validator.ts --bundle --minify --sourcemap --analyze --outfile=dist/multichain-address-validator.min.js",
+        "bundle": "esbuild src/multichain-address-validator.ts --bundle --minify --analyze --outfile=dist/multichain-address-validator.bundle.min.js",
         "test": "mocha --import=tsx test/**.test.ts",
-        "start": "npm run bundle && npm run bundle:minify && npm test"
+        "start": "npm run build && npm run bundle && npm test"
     },
     "dependencies": {
         "@noble/hashes": "^1.4.0",
