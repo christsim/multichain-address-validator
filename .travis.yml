@@ -1,0 +1,11 @@
+sudo: required
+addons:
+    chrome: stable
+language: node_js
+node_js:
+    - "16"
+    - "stable"
+before_install:
+    - npm install -g yarn --cache-min 999999999
+install:
+    - yarn
