@@ -1,10 +1,6 @@
 import {Address, Chain} from './types'
 import {getValidatorForChain} from './chain-validators'
 
-if (!global.Buffer) {
-    global.Buffer = require('buffer').Buffer;
-}
-
 export function validate(address: Address, chain: Chain) {
     const validator = getValidatorForChain(chain)
     if (validator) {

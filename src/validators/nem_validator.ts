@@ -1,3 +1,5 @@
+import {Buffer} from 'buffer'
+
 import cryptoUtils from '../crypto/utils'
 import {Address} from '../types'
 import {getAddress} from '../helpers'
