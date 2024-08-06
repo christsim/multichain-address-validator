@@ -1,7 +1,7 @@
 # multichain address validator
 Simple blockchain address validator for validating Bitcoin and other blockchain addresses **Node.js and browser**.
 
-[![Build Status](https://travis-ci.org/christsim/multicoin-address-validator.svg?branch=master)](https://travis-ci.org/christsim/multicoin-address-validator)
+[![Build Status](https://travis-ci.org/christsim/multicchain-address-validator.svg?branch=master)](https://travis-ci.org/christsim/multichain-address-validator)
 
 ## Installation
 

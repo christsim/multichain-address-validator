@@ -315,8 +315,8 @@
         "ZenCash",
         "zen"
     ],
-    "version": "1.0.0",
-    "author": "Chris <chris.tsim@gmail.com>",
+    "version": "0.0.1",
+    "author": "Chris <28301107+christsim@users.noreply.github.com>",
     "homepage": "https://github.com/christsim/multichain-address-validator",
     "license": "MIT",
     "repository": {
