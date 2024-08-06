@@ -1,4 +1,4 @@
-var JSBigInt = require('./biginteger')['JSBigInt'];
+import { BigInteger as JSBigInt } from './biginteger'
 
 /**
 Copyright (c) 2017, moneroexamples
@@ -223,4 +223,4 @@ var cnBase58 = (function () {
 
     return b58;
 })();
-module.exports = cnBase58;
+export default cnBase58;

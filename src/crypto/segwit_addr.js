@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-var bech32 = require('./bech32');
+import bech32 from './bech32'
 
 function convertbits (data, frombits, tobits, pad) {
     var acc = 0;
@@ -87,24 +87,13 @@ function encode (hrp, version, program) {
 
 /////////////////////////////////////////////////////
 
-var DEFAULT_NETWORK_TYPE = 'prod'
+function isValidAddress(address, opts = {}) {
 
-function isValidAddress(address, currency, opts = {}) {
-
-    if(!currency.bech32Hrp || currency.bech32Hrp.length === 0) {
+    if(!opts.bech32Hrp || opts.bech32Hrp.length === 0) {
         return false;
     }
 
-    const { networkType = DEFAULT_NETWORK_TYPE} = opts;
-
-    var correctBech32Hrps;
-    if (networkType === 'prod' || networkType === 'testnet') {
-        correctBech32Hrps = currency.bech32Hrp[networkType];
-    } else if(currency.bech32Hrp) {
-        correctBech32Hrps = currency.bech32Hrp.prod.concat(currency.bech32Hrp.testnet)
-    } else {
-        return false;
-    }
+    const correctBech32Hrps = opts.bech32Hrp;
 
     for(var chrp of correctBech32Hrps) {
         var ret = decode(chrp, address);
@@ -116,8 +105,8 @@ function isValidAddress(address, currency, opts = {}) {
     return false;
 }
 
-module.exports = {
+export default {
     encode: encode,
     decode: decode,
     isValidAddress: isValidAddress,
-};
+}

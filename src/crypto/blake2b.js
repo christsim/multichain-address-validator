@@ -273,4 +273,4 @@ function toHex (n) {
   return n.toString(16)
 }
 
-module.exports = Blake2b;
+export default Blake2b;
