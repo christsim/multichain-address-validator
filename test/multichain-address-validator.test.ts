@@ -31,6 +31,11 @@ const TestCases: Record<string, TestCase> = {
         alternatives: [],
         valid: 'algorand',
     },
+    'aptos': {
+        alternatives: [],
+        valid: 'aptos',
+        exclude: ['sui']
+    },
     'bitcoin': {
         alternatives: ['btc', 'omni'],
         valid: 'btc', // corresponds to addresses.js
@@ -54,7 +59,10 @@ const TestCases: Record<string, TestCase> = {
     'doge': {
         alternatives: ['dogecoin'],
         exclude: ['btc'],
-        valid: 'doge'
+        valid: 'doge',
+        testnet: {
+            valid: 'doge-testnet',
+        }
     },
     'eos': {
         alternatives: [],
@@ -63,6 +71,10 @@ const TestCases: Record<string, TestCase> = {
     'ethereum': {
         alternatives: ['eth', 'flare', 'avalanche', 'avalanche-c', 'bsc', 'bnb', 'binance'],
         valid: 'evm',
+    },
+    'hedera': {
+        alternatives: [],
+        valid: 'hbar'
     },
     'litecoin': {
         alternatives: ['ltc'],
@@ -75,6 +87,9 @@ const TestCases: Record<string, TestCase> = {
     'monero': {
         alternatives: [],
         valid: 'monero',
+        testnet: {
+            valid: 'monero-testnet',
+        }
     },
     'nano': {
         alternatives: [],
@@ -100,10 +115,15 @@ const TestCases: Record<string, TestCase> = {
         alternatives: ['spl'],
         valid: 'solana'
     },
+    'sui': {
+        alternatives: [],
+        valid: 'sui',
+        exclude: ['aptos']
+    },
     'tezos': {
         alternatives: [],
         valid: 'tezos',
-        exclude: ['btc', 'bch', 'btc-testnet', 'ltc-testnet', 'bch-testnet', 'doge', 'ltc', 'tron'],
+        exclude: ['btc', 'bch', 'btc-testnet', 'ltc-testnet', 'bch-testnet', 'doge', 'doge-testnet', 'ltc', 'tron'],
     },
     'tron': {
         alternatives: ['trc20'],
@@ -120,11 +140,17 @@ describe('multichain address validator', function () {
     it('should validate valid addresses for chains', function () {
         for (const chain in TestCases) {
             for (const c of [chain, ...TestCases[chain].alternatives]) {
+                if (!addresses[TestCases[chain].valid]) {
+                    throw new Error(`No valid addresses for chain '${chain}'`)
+                }
                 for (const address of addresses[TestCases[chain].valid]) {
                     valid(address, c)
                 }
 
                 if (TestCases[chain].testnet) {
+                    if (!addresses[TestCases[chain].testnet.valid]) {
+                        throw new Error(`No valid testnet addresses for chain '${chain}'`)
+                    }
                     for (const address of addresses[TestCases[chain].testnet.valid]) {
                         valid(address, { chain: c, networkType: NetworkType.TestNet })
                     }

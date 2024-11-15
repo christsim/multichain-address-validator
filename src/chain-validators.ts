@@ -1,4 +1,5 @@
-import {Chain, NetworkType, Validator} from './types.js'
+import type {Chain, Validator} from './types.js'
+import { NetworkType } from './types.js'
 
 import {
     AlgorandValidator,
@@ -7,7 +8,9 @@ import {
     CardanoValidator,
     EOSValidator,
     ETHValidator,
+    HederaValidator,
     MoneroValidator,
+    MoveValidator,
     NanoValidator,
     NemValidator,
     PolkadotValidator,
@@ -30,6 +33,7 @@ type ChainValidators = Record<string, {
 
 const chainValidators: ChainValidators = {
     algorand: {validator: AlgorandValidator},
+    aptos: {validator: MoveValidator},
     bitcoin: {
         alternatives: ['btc', 'omni'],
         validator: {
@@ -74,6 +78,10 @@ const chainValidators: ChainValidators = {
         alternatives: ['eth', 'erc20', 'flare', 'avalanche', 'avalanche-c', 'bsc', 'bnb', 'binance'],
         validator: ETHValidator
     },
+    hedera: {
+        alternatives: ['hbar'],
+        validator: HederaValidator
+    },
     litecoin: {
         alternatives: ['ltc'],
         validator: {
@@ -105,6 +113,7 @@ const chainValidators: ChainValidators = {
         alternatives: ['spl'],
         validator: SolanaValidator,
     },
+    sui: {validator: MoveValidator},
     tron: {
         alternatives: ['trc20'],
         validator: TronValidator(),
