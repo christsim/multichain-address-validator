@@ -18,13 +18,21 @@ function swap16(number: number) {
 }
 
 export default {
-    isValidAddress(address: Address) {
+    isValidAddress: function (address: Address) {
         const addr = getAddress(address)
-        if (regexp.test(addr)) {
-            return this.verifyChecksum(addr);
-        }
+        const destinationTag = (address as any).destinationTag
 
-        return false;
+        const validAddress = regexp.test(addr) && this.verifyChecksum(addr);
+
+        return validAddress && this.verifyMemo(destinationTag)
+    },
+
+    verifyMemo(memo: string | null): boolean {
+        if (!memo) return true; // Optional
+
+        // Ensure it's a valid UTF-8 string and does not exceed 28 bytes
+        const encoder = new TextEncoder();
+        return encoder.encode(memo).length <= 28;
     },
 
     verifyChecksum: function (address: string) {
