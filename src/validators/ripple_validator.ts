@@ -22,8 +22,12 @@ export default {
         return validAddress && this.verifyMemo(destinationTag)
     },
 
-    verifyMemo(destinationTag: string | null) {
-        return !destinationTag || /[0-9]+/.test(destinationTag)
+    verifyMemo(destinationTag: string | null): boolean {
+        if (!destinationTag) return true; // Optional
+
+        const tagNumber = Number(destinationTag);
+        // A destination tag is a 32-bit unsigned integer.
+        return /^[0-9]+$/.test(destinationTag) && tagNumber >= 0 && tagNumber <= 4294967295;
     },
 
     verifyChecksum: function (address: string) {

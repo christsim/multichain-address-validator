@@ -326,14 +326,13 @@
     "main": "dist/multichain-address-validator.js",
     "type": "module",
     "engines": {
-        "node": ">=16.0.0"
+        "node": ">=18.0.0"
     },
     "engineStrict": true,
     "scripts": {
         "build": "tsc",
-        "bundle": "tsx config/esbuild.ts",
         "test": "mocha --import=tsx test/**.test.ts",
-        "start": "npm run build && npm run bundle && npm test"
+        "start": "npm run build && npm test"
     },
     "dependencies": {
         "@noble/hashes": "^1.4.0",
@@ -345,7 +344,6 @@
     },
     "devDependencies": {
         "chai": "^4.4.1",
-        "esbuild": "^0.23.0",
         "mocha": "^10.2.0",
         "tsx": "^4.16.2",
         "typescript": "^5.5.4"
