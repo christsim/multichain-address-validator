@@ -1,8 +1,8 @@
 import { getValidatorForChain } from './chain-validators.js';
 export function validate(address, chain) {
     const validator = getValidatorForChain(chain);
-    if (validator) {
-        return validator.isValidAddress(address);
+    if (!validator) {
+        throw new Error(`Missing validator for chain: ${chain}`);
     }
-    throw new Error(`Missing validator for chain: ${chain}`);
+    return validator.isValidAddress(address);
 }
