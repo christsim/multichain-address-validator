@@ -1,11 +1,13 @@
-import {Address, Chain} from './types.js'
+import {Address, Chain, NetworkType} from './types.js'
 import {getValidatorForChain} from './chain-validators.js'
 
 export function validate(address: Address, chain: Chain) {
     const validator = getValidatorForChain(chain)
-    if (validator) {
-        return validator.isValidAddress(address);
+    if (!validator) {
+        throw new Error(`Missing validator for chain: ${chain}`);
     }
 
-    throw new Error(`Missing validator for chain: ${chain}`);
+    return validator.isValidAddress(address);
 }
+
+export { Address, Chain, NetworkType }
