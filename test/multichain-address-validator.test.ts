@@ -153,6 +153,8 @@ describe('multichain address validator', function () {
                     }
                     for (const address of addresses[TestCases[chain].testnet.valid]) {
                         valid(address, { chain: c, networkType: NetworkType.TestNet })
+                        // should also validate testnet addresses when networkType is not specified
+                        valid(address, { chain: c })
                     }
                 }
             }
@@ -167,8 +169,9 @@ describe('multichain address validator', function () {
                     .filter(key => !TestCases[chain].exclude?.includes(key as any))
 
                 for (const invalidChain of invalidChains) {
+                    const networkType = invalidChain.includes("testnet") ? NetworkType.MainNet : NetworkType.TestNet
                     for (const address of addresses[invalidChain]) {
-                        invalid(address, c)
+                        invalid(address, { chain: c, networkType })
                     }
                 }
             }

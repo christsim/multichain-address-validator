@@ -1,4 +1,4 @@
-import type {Chain, Validator} from './types.js'
+import type {Address, Chain, Validator} from './types.js'
 import { NetworkType } from './types.js'
 
 import {
@@ -21,6 +21,7 @@ import {
     TronValidator,
     XLMValidator,
 } from './validators/index.js'
+import {getChainName, getChainNetworkType} from './helpers.js'
 
 
 type ChainValidators = Record<string, {
@@ -126,8 +127,7 @@ const chainValidators: ChainValidators = {
 }
 
 export function getValidatorForChain(chain: Chain): Validator | undefined {
-    const chainName = (chain as any).chain || chain
-    const networkType = (chain as any).networkType || NetworkType.MainNet
+    const chainName = getChainName(chain)
 
     const key = Object.keys(chainValidators).find(key =>
         key.toUpperCase() === chainName.toUpperCase() || chainValidators[key]
@@ -136,5 +136,25 @@ export function getValidatorForChain(chain: Chain): Validator | undefined {
             ?.includes(chainName.toUpperCase())
     )
 
-    return chainValidators[key]?.validator[networkType] || chainValidators[key]?.validator
+    const baseValidator = chainValidators[key]?.validator
+
+    if (!baseValidator) {
+        return
+    }
+
+    if ("isValidAddress" in baseValidator) {
+        return baseValidator
+    }
+
+    const networkType: NetworkType | undefined = getChainNetworkType(chain)
+
+    if (networkType) {
+        return baseValidator[networkType]
+    }
+
+    return {
+        isValidAddress(address: Address): boolean {
+            return baseValidator[NetworkType.MainNet].isValidAddress(address) || baseValidator[NetworkType.TestNet].isValidAddress(address)
+        }
+    }
 }
