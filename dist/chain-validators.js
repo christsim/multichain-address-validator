@@ -45,7 +45,19 @@ const chainValidators = {
     },
     eos: { validator: EOSValidator },
     ethereum: {
-        alternatives: ['eth', 'erc20', 'flare', 'avalanche', 'avalanche-c', 'bsc', 'bnb', 'binance'],
+        alternatives: [
+            'arbitrum',
+            'avalanche',
+            'avalanche-c',
+            'base',
+            'binance',
+            'bnb',
+            'bsc',
+            'eth',
+            'erc20',
+            'flare',
+            'sonic',
+        ],
         validator: ETHValidator
     },
     hedera: {
