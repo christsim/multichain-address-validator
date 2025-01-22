@@ -1,6 +1,7 @@
 {
     "name": "multichain-address-validator",
     "description": "Multichain address validator for Bitcoin and other blockchains.",
+    "version": "0.7.1",
     "keywords": [
         "0x",
         "zrx",
@@ -315,7 +316,6 @@
         "ZenCash",
         "zen"
     ],
-    "version": "0.7.0",
     "author": "Chris <28301107+christsim@users.noreply.github.com>",
     "homepage": "https://github.com/christsim/multichain-address-validator",
     "license": "MIT",
