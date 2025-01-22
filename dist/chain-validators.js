@@ -1,6 +1,5 @@
 import { NetworkType } from './types.js';
 import { AlgorandValidator, BCHValidator, BTCValidator, CardanoValidator, EOSValidator, ETHValidator, HederaValidator, MoneroValidator, MoveValidator, NanoValidator, NemValidator, PolkadotValidator, RippleValidator, SiaValidator, SolanaValidator, TezosValidator, TronValidator, XLMValidator, } from './validators/index.js';
-import { getChainName, getChainNetworkType } from './helpers.js';
 const chainValidators = {
     algorand: { validator: AlgorandValidator },
     aptos: { validator: MoveValidator },
@@ -107,25 +106,11 @@ const chainValidators = {
     },
 };
 export function getValidatorForChain(chain) {
-    const chainName = getChainName(chain);
+    const chainName = chain.chain || chain;
+    const networkType = chain.networkType || NetworkType.MainNet;
     const key = Object.keys(chainValidators).find(key => key.toUpperCase() === chainName.toUpperCase() || chainValidators[key]
         ?.alternatives
         ?.map(alternative => alternative.toUpperCase())
         ?.includes(chainName.toUpperCase()));
-    const baseValidator = chainValidators[key]?.validator;
-    if (!baseValidator) {
-        return;
-    }
-    if ("isValidAddress" in baseValidator) {
-        return baseValidator;
-    }
-    const networkType = getChainNetworkType(chain);
-    if (networkType) {
-        return baseValidator[networkType];
-    }
-    return {
-        isValidAddress(address) {
-            return baseValidator[NetworkType.MainNet].isValidAddress(address) || baseValidator[NetworkType.TestNet].isValidAddress(address);
-        }
-    };
+    return chainValidators[key]?.validator[networkType] || chainValidators[key]?.validator;
 }
