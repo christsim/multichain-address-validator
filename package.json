@@ -1,7 +1,7 @@
 {
     "name": "multichain-address-validator",
     "description": "Multichain address validator for Bitcoin and other blockchains.",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "keywords": [
         "0x",
         "zrx",
