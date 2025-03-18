@@ -33,7 +33,7 @@ npm install multichain-address-validator
 * Cardano: `cardano`, `ada`
 * Dogecoin: `dogecoin`, `doge`
 * EOS: `eos`
-* Etherum: `ethereum`, `eth`, `erc20`, `flare`, `avalanche`, `avalanche-c`, `bsc`, `bnb`, `binance`
+* Etherum: `ethereum`, `eth`, `erc20`, `flare`, `avalanche`, `avalanche-c`, `bsc`, `bnb`, `binance`, `sonic`, `berachain`, `story`
 * Litecoin: `litecoin`, `ltc`
 * Monero: `monero`
 * Nano: `nano`

@@ -69,7 +69,7 @@ const TestCases: Record<string, TestCase> = {
         valid: 'eos',
     },
     'ethereum': {
-        alternatives: ['eth', 'flare', 'avalanche', 'avalanche-c', 'bsc', 'bnb', 'binance'],
+        alternatives: ['eth', 'flare', 'avalanche', 'avalanche-c', 'bsc', 'bnb', 'binance', 'sonic', 'berachain', 'story'],
         valid: 'evm',
     },
     'hedera': {

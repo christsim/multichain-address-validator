@@ -80,6 +80,7 @@ const chainValidators: ChainValidators = {
             'avalanche',
             'avalanche-c',
             'base',
+            'berachain',
             'binance',
             'BinanceSmartChain',
             'bnb',
@@ -90,6 +91,7 @@ const chainValidators: ChainValidators = {
             'erc20',
             'flare',
             'sonic',
+            'story',
         ],
         validator: ETHValidator
     },
