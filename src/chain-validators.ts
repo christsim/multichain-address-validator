@@ -98,11 +98,11 @@ const chainValidators: ChainValidators = {
         alternatives: ['ltc'],
         validator: {
             mainnet: BTCValidator({
-                addressTypes: ['30', '05', '32'],
+                addressTypes: ['30', '32'],
                 bech32Hrp: ['ltc'],
             }),
             testnet: BTCValidator({
-                addressTypes: ['6f', 'c4', '3a'],
+                addressTypes: ['6f', '3a'],
                 bech32Hrp: ['tltc']
             })
         }
