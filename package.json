@@ -340,7 +340,7 @@
     "engineStrict": true,
     "scripts": {
         "build:esm": "tsc -p tsconfig.esm.json",
-        "build:cjs": "tsc -p tsconfig.cjs.json",
+        "build:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json",
         "build": "npm run clean && npm run build:esm && npm run build:cjs",
         "clean": "rimraf dist",
         "test": "mocha --import=tsx test/**.test.ts",
