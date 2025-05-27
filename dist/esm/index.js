@@ -1,3 +1,4 @@
+import { NetworkType } from './types.js';
 import { getValidatorForChain } from './chain-validators.js';
 export function validate(address, chain) {
     const validator = getValidatorForChain(chain);
@@ -6,3 +7,7 @@ export function validate(address, chain) {
     }
     return validator.isValidAddress(address);
 }
+export { NetworkType };
+export default {
+    validate
+};

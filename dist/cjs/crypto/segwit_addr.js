@@ -1,3 +1,4 @@
+"use strict";
 // Copyright (c) 2017, 2021 Pieter Wuille
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,10 +18,12 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
-import bech32 from './bech32.js'
-
-function convertbits (data, frombits, tobits, pad) {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const bech32_js_1 = __importDefault(require("./bech32.js"));
+function convertbits(data, frombits, tobits, pad) {
     var acc = 0;
     var bits = 0;
     var ret = [];
@@ -41,17 +44,17 @@ function convertbits (data, frombits, tobits, pad) {
         if (bits > 0) {
             ret.push((acc << (tobits - bits)) & maxv);
         }
-    } else if (bits >= frombits || ((acc << (tobits - bits)) & maxv)) {
+    }
+    else if (bits >= frombits || ((acc << (tobits - bits)) & maxv)) {
         return null;
     }
     return ret;
 }
-
-function decode (hrp, addr) {
+function decode(hrp, addr) {
     var bech32m = false;
-    var dec = bech32.decode(addr, bech32.encodings.BECH32);
+    var dec = bech32_js_1.default.decode(addr, bech32_js_1.default.encodings.BECH32);
     if (dec === null) {
-        dec = bech32.decode(addr, bech32.encodings.BECH32M);
+        dec = bech32_js_1.default.decode(addr, bech32_js_1.default.encodings.BECH32M);
         bech32m = true;
     }
     if (dec === null || dec.hrp !== hrp || dec.data.length < 1 || dec.data[0] > 16) {
@@ -70,43 +73,35 @@ function decode (hrp, addr) {
     if (dec.data[0] !== 0 && !bech32m) {
         return null;
     }
-    return {version: dec.data[0], program: res};
+    return { version: dec.data[0], program: res };
 }
-
-function encode (hrp, version, program) {
-    var enc = bech32.encodings.BECH32;
+function encode(hrp, version, program) {
+    var enc = bech32_js_1.default.encodings.BECH32;
     if (version > 0) {
-        enc = bech32.encodings.BECH32M;
+        enc = bech32_js_1.default.encodings.BECH32M;
     }
-    var ret = bech32.encode(hrp, [version].concat(convertbits(program, 8, 5, true)), enc);
+    var ret = bech32_js_1.default.encode(hrp, [version].concat(convertbits(program, 8, 5, true)), enc);
     if (decode(hrp, ret, enc) === null) {
         return null;
     }
     return ret;
 }
-
 /////////////////////////////////////////////////////
-
 function isValidAddress(address, opts = {}) {
-
-    if(!opts.bech32Hrp || opts.bech32Hrp.length === 0) {
+    if (!opts.bech32Hrp || opts.bech32Hrp.length === 0) {
         return false;
     }
-
     const correctBech32Hrps = opts.bech32Hrp;
-
-    for(var chrp of correctBech32Hrps) {
+    for (var chrp of correctBech32Hrps) {
         var ret = decode(chrp, address);
-        if(ret) {
+        if (ret) {
             return encode(chrp, ret.version, ret.program) === address.toLowerCase();
         }
     }
-
     return false;
 }
-
-export default {
+exports.default = {
     encode: encode,
     decode: decode,
     isValidAddress: isValidAddress,
-}
+};

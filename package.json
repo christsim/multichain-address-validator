@@ -323,14 +323,26 @@
         "type": "git",
         "url": "https://github.com/christsim/multichain-address-validator.git"
     },
-    "main": "dist/multichain-address-validator.js",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts",
     "type": "module",
+    "exports": {
+        ".": {
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "types": "./dist/esm/index.d.ts"
+        }
+    },
     "engines": {
         "node": ">=18.0.0"
     },
     "engineStrict": true,
     "scripts": {
-        "build": "tsc",
+        "build:esm": "tsc -p tsconfig.esm.json",
+        "build:cjs": "tsc -p tsconfig.cjs.json",
+        "build": "npm run clean && npm run build:esm && npm run build:cjs",
+        "clean": "rimraf dist",
         "test": "mocha --import=tsx test/**.test.ts",
         "start": "npm run build && npm test"
     },
@@ -345,6 +357,7 @@
     "devDependencies": {
         "chai": "^4.4.1",
         "mocha": "^10.2.0",
+        "rimraf": "6.0.1",
         "tsx": "^4.16.2",
         "typescript": "^5.5.4"
     }

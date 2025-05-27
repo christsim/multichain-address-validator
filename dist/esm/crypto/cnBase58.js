@@ -1,4 +1,4 @@
-import { BigInteger as JSBigInt } from './biginteger';
+import { BigInteger as JSBigInt } from './biginteger.js';
 /**
 Copyright (c) 2017, moneroexamples
 

@@ -1,5 +1,6 @@
-import { BigInteger as JSBigInt } from './biginteger.js'
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const biginteger_js_1 = require("./biginteger.js");
 /**
 Copyright (c) 2017, moneroexamples
 
@@ -32,32 +33,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Parts of the project are originally copyright (c) 2014-2017, MyMonero.com
 */
-
 var cnBase58 = (function () {
     var b58 = {};
-
     var alphabet_str = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
     var alphabet = [];
     for (var i = 0; i < alphabet_str.length; i++) {
         alphabet.push(alphabet_str.charCodeAt(i));
     }
     var encoded_block_sizes = [0, 2, 3, 5, 6, 7, 9, 10, 11];
-
     var alphabet_size = alphabet.length;
     var full_block_size = 8;
     var full_encoded_block_size = 11;
-
-    var UINT64_MAX = new JSBigInt(2).pow(64);
-
+    var UINT64_MAX = new biginteger_js_1.BigInteger(2).pow(64);
     function hextobin(hex) {
-        if (hex.length % 2 !== 0) throw "Hex string has invalid length!";
+        if (hex.length % 2 !== 0)
+            throw "Hex string has invalid length!";
         var res = new Uint8Array(hex.length / 2);
         for (var i = 0; i < hex.length / 2; ++i) {
             res[i] = parseInt(hex.slice(i * 2, i * 2 + 2), 16);
         }
         return res;
     }
-
     function bintohex(bin) {
         var out = [];
         for (var i = 0; i < bin.length; ++i) {
@@ -65,7 +61,6 @@ var cnBase58 = (function () {
         }
         return out.join("");
     }
-
     function strtobin(str) {
         var res = new Uint8Array(str.length);
         for (var i = 0; i < str.length; i++) {
@@ -73,7 +68,6 @@ var cnBase58 = (function () {
         }
         return res;
     }
-
     function bintostr(bin) {
         var out = [];
         for (var i = 0; i < bin.length; i++) {
@@ -81,51 +75,48 @@ var cnBase58 = (function () {
         }
         return out.join("");
     }
-
     function uint8_be_to_64(data) {
         if (data.length < 1 || data.length > 8) {
             throw "Invalid input length";
         }
-        var res = JSBigInt.ZERO;
-        var twopow8 = new JSBigInt(2).pow(8);
+        var res = biginteger_js_1.BigInteger.ZERO;
+        var twopow8 = new biginteger_js_1.BigInteger(2).pow(8);
         var i = 0;
         switch (9 - data.length) {
-        case 1:
-            res = res.add(data[i++]);
-        case 2:
-            res = res.multiply(twopow8).add(data[i++]);
-        case 3:
-            res = res.multiply(twopow8).add(data[i++]);
-        case 4:
-            res = res.multiply(twopow8).add(data[i++]);
-        case 5:
-            res = res.multiply(twopow8).add(data[i++]);
-        case 6:
-            res = res.multiply(twopow8).add(data[i++]);
-        case 7:
-            res = res.multiply(twopow8).add(data[i++]);
-        case 8:
-            res = res.multiply(twopow8).add(data[i++]);
-            break;
-        default:
-            throw "Impossible condition";
+            case 1:
+                res = res.add(data[i++]);
+            case 2:
+                res = res.multiply(twopow8).add(data[i++]);
+            case 3:
+                res = res.multiply(twopow8).add(data[i++]);
+            case 4:
+                res = res.multiply(twopow8).add(data[i++]);
+            case 5:
+                res = res.multiply(twopow8).add(data[i++]);
+            case 6:
+                res = res.multiply(twopow8).add(data[i++]);
+            case 7:
+                res = res.multiply(twopow8).add(data[i++]);
+            case 8:
+                res = res.multiply(twopow8).add(data[i++]);
+                break;
+            default:
+                throw "Impossible condition";
         }
         return res;
     }
-
     function uint64_to_8be(num, size) {
         var res = new Uint8Array(size);
         if (size < 1 || size > 8) {
             throw "Invalid input length";
         }
-        var twopow8 = new JSBigInt(2).pow(8);
+        var twopow8 = new biginteger_js_1.BigInteger(2).pow(8);
         for (var i = size - 1; i >= 0; i--) {
             res[i] = num.remainder(twopow8).toJSValue();
             num = num.divide(twopow8);
         }
         return res;
     }
-
     b58.encode_block = function (data, buf, index) {
         if (data.length < 1 || data.length > full_encoded_block_size) {
             throw "Invalid block length: " + data.length;
@@ -144,7 +135,6 @@ var cnBase58 = (function () {
         }
         return buf;
     };
-
     b58.encode = function (hex) {
         var data = hextobin(hex);
         if (data.length === 0) {
@@ -153,7 +143,6 @@ var cnBase58 = (function () {
         var full_block_count = Math.floor(data.length / full_block_size);
         var last_block_size = data.length % full_block_size;
         var res_size = full_block_count * full_encoded_block_size + encoded_block_sizes[last_block_size];
-
         var res = new Uint8Array(res_size);
         var i;
         for (i = 0; i < res_size; ++i) {
@@ -163,22 +152,20 @@ var cnBase58 = (function () {
             res = b58.encode_block(data.subarray(i * full_block_size, i * full_block_size + full_block_size), res, i * full_encoded_block_size);
         }
         if (last_block_size > 0) {
-            res = b58.encode_block(data.subarray(full_block_count * full_block_size, full_block_count * full_block_size + last_block_size), res, full_block_count * full_encoded_block_size)
+            res = b58.encode_block(data.subarray(full_block_count * full_block_size, full_block_count * full_block_size + last_block_size), res, full_block_count * full_encoded_block_size);
         }
         return bintostr(res);
     };
-
     b58.decode_block = function (data, buf, index) {
         if (data.length < 1 || data.length > full_encoded_block_size) {
             throw "Invalid block length: " + data.length;
         }
-
         var res_size = encoded_block_sizes.indexOf(data.length);
         if (res_size <= 0) {
             throw "Invalid block size";
         }
-        var res_num = new JSBigInt(0);
-        var order = new JSBigInt(1);
+        var res_num = new biginteger_js_1.BigInteger(0);
+        var order = new biginteger_js_1.BigInteger(1);
         for (var i = data.length - 1; i >= 0; i--) {
             var digit = alphabet.indexOf(data[i]);
             if (digit < 0) {
@@ -192,13 +179,12 @@ var cnBase58 = (function () {
             res_num = product;
             order = order.multiply(alphabet_size);
         }
-        if (res_size < full_block_size && (new JSBigInt(2).pow(8 * res_size).compare(res_num) <= 0)) {
+        if (res_size < full_block_size && (new biginteger_js_1.BigInteger(2).pow(8 * res_size).compare(res_num) <= 0)) {
             throw "Overflow 2";
         }
         buf.set(uint64_to_8be(res_num, res_size), index);
         return buf;
     };
-
     b58.decode = function (enc) {
         enc = strtobin(enc);
         if (enc.length === 0) {
@@ -220,7 +206,6 @@ var cnBase58 = (function () {
         }
         return bintohex(data);
     };
-
     return b58;
 })();
-export default cnBase58;
+exports.default = cnBase58;

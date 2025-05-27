@@ -1,8 +1,7 @@
 import {describe, it} from 'mocha'
 import {expect} from 'chai'
 
-import {validate} from '../src/multichain-address-validator.js'
-import {Address, Chain, NetworkType} from '../src/types.js'
+import {validate, Address, Chain, NetworkType} from '../src'
 // @ts-ignore
 import addresses from './addresses/addresses'
 

@@ -10,4 +10,9 @@ export function validate(address: Address, chain: Chain) {
     return validator.isValidAddress(address);
 }
 
-export type { Address, Chain, NetworkType }
+export type { Address, Chain }
+export { NetworkType }
+
+export default {
+    validate
+}
