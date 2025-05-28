@@ -1,7 +1,7 @@
 {
     "name": "multichain-address-validator",
     "description": "Multichain address validator for Bitcoin and other blockchains.",
-    "version": "0.7.3",
+    "version": "0.7.4",
     "keywords": [
         "0x",
         "zrx",
@@ -342,7 +342,7 @@
         "build:esm": "tsc -p tsconfig.esm.json",
         "build:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json",
         "build": "npm run clean && npm run build:esm && npm run build:cjs",
-        "clean": "rimraf dist",
+        "clean": "npx rimraf dist",
         "test": "mocha --import=tsx test/**.test.ts",
         "start": "npm run build && npm test"
     },
@@ -357,7 +357,6 @@
     "devDependencies": {
         "chai": "^4.4.1",
         "mocha": "^10.2.0",
-        "rimraf": "6.0.1",
         "tsx": "^4.16.2",
         "typescript": "^5.5.4"
     }
