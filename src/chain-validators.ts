@@ -103,7 +103,7 @@ const chainValidators: ChainValidators = {
         alternatives: ['ltc'],
         validator: {
             mainnet: BTCValidator({
-                addressTypes: ['30', '05', '32'],
+                addressTypes: ['30', '32'],
                 bech32Hrp: ['ltc'],
             }),
             testnet: BTCValidator({
