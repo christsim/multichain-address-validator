@@ -24,8 +24,11 @@ import sui from './sui.json'
 import tezos from './tezos.json'
 import tron from './tron.json'
 import xlm from './xlm.json'
+import {Address} from '../../src'
 
-export default {
+export type TestAddress = Address & { invalid?: boolean }
+
+const testAddresses: Record<string, TestAddress[]> = {
     aptos,
     algorand,
     bch,
@@ -52,4 +55,6 @@ export default {
     tezos,
     tron,
     xlm,
-}
+} as const;
+
+export default testAddresses
