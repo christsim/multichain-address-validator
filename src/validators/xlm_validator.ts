@@ -3,7 +3,7 @@ import crc from 'crc'
 
 import cryptoUtils from '../crypto/utils.js'
 import {Address} from '../types.js'
-import {getAddress} from '../helpers.js'
+import {getAddress, getMemo} from '../helpers.js'
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 
@@ -20,14 +20,14 @@ function swap16(number: number) {
 export default {
     isValidAddress: function (address: Address) {
         const addr = getAddress(address)
-        const destinationTag = (address as any).destinationTag
+        const memo = getMemo(address)
 
         const validAddress = regexp.test(addr) && this.verifyChecksum(addr);
 
-        return validAddress && this.verifyMemo(destinationTag)
+        return validAddress && this.verifyMemo(memo)
     },
 
-    verifyMemo(memo: string | null): boolean {
+    verifyMemo(memo?: string): boolean {
         if (!memo) return true; // Optional
 
         // Ensure it's a valid UTF-8 string and does not exceed 28 bytes

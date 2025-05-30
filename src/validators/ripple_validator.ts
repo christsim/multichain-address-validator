@@ -2,7 +2,7 @@ import baseX from 'base-x'
 
 import cryptoUtils from '../crypto/utils.js'
 import {Address} from '../types.js'
-import {getAddress} from '../helpers.js'
+import {getAddress, getMemo} from '../helpers.js'
 
 const ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz';
 
@@ -15,22 +15,22 @@ export default {
      */
     isValidAddress: function (address: Address) {
         const addr = getAddress(address)
-        const destinationTag = (address as any).destinationTag
+        const memo = getMemo(address)
 
         const validAddress = regexp.test(addr) && this.verifyChecksum(addr);
 
-        return validAddress && this.verifyMemo(destinationTag)
+        return validAddress && this.verifyMemo(memo)
     },
 
-    verifyMemo(destinationTag: string | null): boolean {
-        if (!destinationTag) return true; // Optional
+    verifyMemo(memo?: string): boolean {
+        if (!memo) return true; // Optional
 
-        const tagNumber = Number(destinationTag);
-        // A destination tag is a 32-bit unsigned integer.
-        return /^[0-9]+$/.test(destinationTag) && tagNumber >= 0 && tagNumber <= 4294967295;
+        const memoNumber = Number(memo);
+        // A memo is a 32-bit unsigned integer.
+        return /^[0-9]+$/.test(memo) && memoNumber >= 0 && memoNumber <= 4294967295;
     },
 
-    verifyChecksum: function (address: string) {
+    verifyChecksum(address: string): boolean {
         const bytes = codec.decode(address);
         const computedChecksum = cryptoUtils.sha256Checksum(cryptoUtils.toHex(bytes.slice(0, -4)));
         const checksum = cryptoUtils.toHex(bytes.slice(-4));

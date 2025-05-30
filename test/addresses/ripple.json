@@ -5,11 +5,16 @@
     "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
     {
         "address": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
-        "destinationTag": 4294967295
+        "memo": "4294967295"
     },
     "rDTXLQ7ZKZVKz33zJbHjgVShjsBnqMBhmN",
     {
         "address": "rDTXLQ7ZKZVKz33zJbHjgVShjsBnqMBhmN",
-        "destinationTag": 50000
+        "memo": "50000"
+    },
+    {
+        "address": "rDTXLQ7ZKZVKz33zJbHjgVShjsBnqMBhmN",
+        "memo": "non-numeric-memo",
+        "invalid": true
     }
 ]

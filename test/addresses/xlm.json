@@ -11,6 +11,11 @@
     "GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ",
     {
         "address": "GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ",
-        "destinationTag": "3fdsfsdfasdfdsfgasdgfdsfgas"
+        "memo": "3fdsfsdfasdfdsfgasdgfdsfgas"
+    },
+    {
+        "address": "GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ",
+        "memo": "really long memo that exceeds 28 bytes",
+        "invalid": true
     }
 ]
