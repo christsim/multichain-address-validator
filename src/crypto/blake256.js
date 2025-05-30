@@ -1,3 +1,5 @@
+import {Buffer} from 'buffer'
+
 /**
  * Credits to https://github.com/cryptocoinjs/blake-hash
  */
