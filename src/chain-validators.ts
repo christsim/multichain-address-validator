@@ -90,6 +90,7 @@ const chainValidators: ChainValidators = {
             'EthereumPow',
             'erc20',
             'flare',
+            'optimism',
             'sonic',
             'story',
         ],
@@ -125,9 +126,12 @@ const chainValidators: ChainValidators = {
         alternatives: ['xrp'],
         validator: RippleValidator,
     },
-    sia: {validator: SiaValidator},
+    sia: {
+        alternatives: ['SiaCoin'],
+        validator: SiaValidator
+    },
     solana: {
-        alternatives: ['spl'],
+        alternatives: ['sol','spl'],
         validator: SolanaValidator,
     },
     sui: {validator: MoveValidator},
@@ -137,7 +141,7 @@ const chainValidators: ChainValidators = {
     },
     tezos: {validator: TezosValidator},
     xlm: {
-        alternatives: ['stellar'],
+        alternatives: ['stellar', 'stellarlumens'],
         validator: XLMValidator,
     },
 }
