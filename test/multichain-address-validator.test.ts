@@ -73,7 +73,21 @@ const TestCases: Record<string, TestCase> = {
         testAddresses: 'eos',
     },
     'ethereum': {
-        alternatives: ['eth', 'flare', 'avalanche', 'avalanche-c', 'bsc', 'bnb', 'binance', 'sonic', 'berachain', 'story'],
+        alternatives: [
+            'arbitrum',
+            'avalanche',
+            'avalanche-c',
+            'base',
+            'berachain',
+            'binance',
+            'bnb',
+            'bsc',
+            'eth',
+            'flare',
+            'optimism',
+            'sonic',
+            'story',
+        ],
         testAddresses: 'evm',
     },
     'hedera': {
@@ -112,11 +126,11 @@ const TestCases: Record<string, TestCase> = {
         testAddresses: 'ripple'
     },
     'sia': {
-        alternatives: [],
+        alternatives: ['SiaCoin'],
         testAddresses: 'sia',
     },
     'solana': {
-        alternatives: ['spl'],
+        alternatives: ['sol', 'spl'],
         testAddresses: 'solana'
     },
     'sui': {
@@ -134,7 +148,7 @@ const TestCases: Record<string, TestCase> = {
         testAddresses: 'tron',
     },
     'xlm': {
-        alternatives: ['stellar'],
+        alternatives: ['stellar', 'stellarlumens'],
         testAddresses: 'xlm',
     }
 }
