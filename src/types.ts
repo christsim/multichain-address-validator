@@ -10,6 +10,7 @@ export type Chain = string | {
 
 export interface Validator {
     isValidAddress(address: Address): boolean
+    isValidMemo?(memo: string): boolean
 }
 
 export enum NetworkType {

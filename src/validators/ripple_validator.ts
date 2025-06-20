@@ -22,6 +22,10 @@ export default {
         return validAddress && this.verifyMemo(memo)
     },
 
+    isValidMemo(memo: string): boolean {
+        return this.verifyMemo(memo)
+    },
+
     verifyMemo(memo?: string): boolean {
         if (!memo) return true; // Optional
 
