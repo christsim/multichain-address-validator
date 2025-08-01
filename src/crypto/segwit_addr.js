@@ -93,12 +93,18 @@ function isValidAddress(address, opts = {}) {
         return false;
     }
 
+    if (!opts.allowedSegwitVersions?.length) {
+        return false;
+    }
+
     const correctBech32Hrps = opts.bech32Hrp;
 
-    for(var chrp of correctBech32Hrps) {
-        var ret = decode(chrp, address);
+    for(const chrp of correctBech32Hrps) {
+        const ret = decode(chrp, address);
         if(ret) {
-            return encode(chrp, ret.version, ret.program) === address.toLowerCase();
+            if (opts.allowedSegwitVersions.includes(ret.version)) {
+                return encode(chrp, ret.version, ret.program) === address.toLowerCase();
+            }
         }
     }
 

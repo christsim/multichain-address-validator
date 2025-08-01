@@ -10,5 +10,9 @@
     "1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez",
     "116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd",
     "3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt",
-    "bc1q2t63ewm3mvh0ztmnmezxm7s0tefknenxlrlwrk"
+    "bc1q2t63ewm3mvh0ztmnmezxm7s0tefknenxlrlwrk",
+    {
+        "address": "bc1pmr3w69uk09zqez3vy4l0jjws7uwa9fmljag2mwumfx9rr6045g8scr7nn3",
+        "invalid": true
+    }
 ]

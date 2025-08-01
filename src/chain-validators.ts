@@ -21,6 +21,7 @@ import {
     TronValidator,
     XLMValidator,
 } from './validators/index.js'
+import {SegwitVersion} from './validators/bitcoin_validator'
 
 
 type ChainValidators = Record<string, {
@@ -40,10 +41,12 @@ const chainValidators: ChainValidators = {
             mainnet: BTCValidator({
                 addressTypes: ['00', '05'],
                 bech32Hrp: ['bc'],
+                allowedSegwitVersions: [SegwitVersion.NativeSegwit],
             }),
             testnet: BTCValidator({
                 addressTypes: ['6f', 'c4', '3c', '26'],
                 bech32Hrp: ['tb'],
+                allowedSegwitVersions: [SegwitVersion.NativeSegwit],
             }),
         },
     },
@@ -106,10 +109,12 @@ const chainValidators: ChainValidators = {
             mainnet: BTCValidator({
                 addressTypes: ['30', '32'],
                 bech32Hrp: ['ltc'],
+                allowedSegwitVersions: [SegwitVersion.NativeSegwit],
             }),
             testnet: BTCValidator({
                 addressTypes: ['6f', 'c4', '3a'],
-                bech32Hrp: ['tltc']
+                bech32Hrp: ['tltc'],
+                allowedSegwitVersions: [SegwitVersion.NativeSegwit],
             })
         }
     },
