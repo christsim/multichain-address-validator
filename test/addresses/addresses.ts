@@ -24,9 +24,8 @@ import sui from './sui.json'
 import tezos from './tezos.json'
 import tron from './tron.json'
 import xlm from './xlm.json'
-import {Address} from '../../src'
 
-export type TestAddress = Address & { invalid?: boolean }
+export type TestAddress = string | { address: string, memo?: string } & { invalid?: boolean, invalidMemo?: boolean }
 
 const testAddresses: Record<string, TestAddress[]> = {
     aptos,

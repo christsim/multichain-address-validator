@@ -16,6 +16,6 @@
     {
         "address": "GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ",
         "memo": "really long memo that exceeds 28 bytes",
-        "invalid": true
+        "invalidMemo": true
     }
 ]

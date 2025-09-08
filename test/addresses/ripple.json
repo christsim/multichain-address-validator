@@ -15,6 +15,6 @@
     {
         "address": "rDTXLQ7ZKZVKz33zJbHjgVShjsBnqMBhmN",
         "memo": "non-numeric-memo",
-        "invalid": true
+        "invalidMemo": true
     }
 ]
