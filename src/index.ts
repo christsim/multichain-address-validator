@@ -23,5 +23,6 @@ export type { Address, Chain }
 export { NetworkType }
 
 export default {
-    validate
+    validate,
+    validateMemo
 }
