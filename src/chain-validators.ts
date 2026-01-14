@@ -4,6 +4,7 @@ import { NetworkType } from './types.js'
 import {
     AlgorandValidator,
     BCHValidator,
+    BittensorValidator,
     BTCValidator,
     CardanoValidator,
     EOSValidator,
@@ -62,6 +63,10 @@ const chainValidators: ChainValidators = {
             }),
         }
     },
+    bittensor: {
+        alternatives: ['tao'],
+        validator: BittensorValidator,
+    },
     cardano: {
         alternatives: ['ada'],
         validator: CardanoValidator,
@@ -118,6 +123,10 @@ const chainValidators: ChainValidators = {
             mainnet: MoneroValidator(NetworkType.MainNet),
             testnet: MoneroValidator(NetworkType.TestNet),
         }
+    },
+    monad: {
+        alternatives: ['mon'],
+        validator: ETHValidator,
     },
     nem: {validator: NemValidator},
     nano: {validator: NanoValidator},

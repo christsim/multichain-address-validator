@@ -84,6 +84,11 @@ const TestCases: Record<string, TestCase> = {
             testAddresses: 'bch-testnet',
         }
     },
+    'bittensor': {
+        alternatives: ['tao'],
+        testAddresses: 'bittensor',
+        exclude: ['polkadot'],
+    },
     'cardano': {
         alternatives: ['ada'],
         testAddresses: 'cardano',
@@ -112,6 +117,7 @@ const TestCases: Record<string, TestCase> = {
             'bsc',
             'eth',
             'flare',
+            'monad',
             'optimism',
             'sonic',
             'story',
@@ -137,6 +143,11 @@ const TestCases: Record<string, TestCase> = {
             testAddresses: 'monero-testnet',
         }
     },
+    'monad': {
+        alternatives: ['mon'],
+        testAddresses: 'evm',
+        exclude: ['evm'],
+    },
     'nano': {
         alternatives: [],
         testAddresses: 'nano',
@@ -148,6 +159,7 @@ const TestCases: Record<string, TestCase> = {
     'polkadot': {
         alternatives: [],
         testAddresses: 'polkadot',
+        exclude: ['bittensor'],
     },
     'ripple': {
         alternatives: ['xrp'],
