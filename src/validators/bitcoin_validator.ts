@@ -71,24 +71,23 @@ function isValidP2PKHandP2SHAddress(address: string, opts: BTCValidatorOpts) {
     return false;
 }
 
+export enum SegwitVersion {
+    NativeSegwit = 0,
+    TapRoot = 1,
+}
 
 interface BTCValidatorOpts {
     addressTypes: string[],
     expectedLength?: number,
     bech32Hrp?: [string],
+    allowedSegwitVersions?: [number],
     hashFunction?: 'blake256' | 'blake256keccak256' | 'keccak256' | 'sha256',
     regex?: RegExp,
 }
 
-// const DefaultBTCValidatorOpts: BTCValidatorOpts = {
-//     addressTypes: {mainnet: ['00', '05'], testnet: ['6f', 'c4', '3c', '26']},
-//     bech32Hrp: {mainnet: ['bc'], testnet: ['tb']},
-// }
-
 export default (opts: BTCValidatorOpts) => ({
     isValidAddress(address: Address): boolean {
         const addr = getAddress(address)
-        // const _opts = {...DefaultBTCValidatorOpts, ...opts}
         return isValidP2PKHandP2SHAddress(addr, opts) || segwit.isValidAddress(addr, opts);
     }
 })
