@@ -1,5 +1,6 @@
 export {default as AlgorandValidator} from "./algorand_validator.js"
 export {default as BCHValidator} from "./bch_validator.js"
+export {default as BittensorValidator} from "./bittensor_validator.js"
 export {default as BTCValidator} from "./bitcoin_validator.js"
 export {default as CardanoValidator} from "./cardano_validator.js"
 export {default as EOSValidator} from "./eos_validator.js"

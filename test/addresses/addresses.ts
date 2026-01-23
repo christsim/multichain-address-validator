@@ -2,6 +2,7 @@ import algorand from './algorand.json'
 import aptos from './aptos.json'
 import bch from './bch.json'
 import bchTestnet from './bch-testnet.json'
+import bittensor from './bittensor.json'
 import btc from './btc.json'
 import btcTestnet from './btc-testnet.json'
 import cardano from './cardano.json'
@@ -33,6 +34,7 @@ const testAddresses: Record<string, TestAddress[]> = {
     algorand,
     bch,
     'bch-testnet': bchTestnet,
+    bittensor,
     btc,
     'btc-testnet': btcTestnet,
     cardano,
