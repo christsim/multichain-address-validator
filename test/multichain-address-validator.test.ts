@@ -169,7 +169,7 @@ const TestCases: Record<string, TestCase> = {
     'tezos': {
         alternatives: [],
         testAddresses: 'tezos',
-        exclude: ['btc', 'bch', 'btc-testnet', 'ltc-testnet', 'bch-testnet', 'doge', 'doge-testnet', 'ltc', 'tron'],
+        exclude: ['btc', 'bch', 'btc-testnet', 'ltc-testnet', 'bch-testnet', 'doge', 'doge-testnet', 'ltc', 'tron', 'zcash'],
     },
     'tron': {
         alternatives: ['trc20'],
@@ -178,6 +178,11 @@ const TestCases: Record<string, TestCase> = {
     'xlm': {
         alternatives: ['stellar', 'stellarlumens'],
         testAddresses: 'xlm',
+    },
+    'zcash': {
+        alternatives: ['zec'],
+        testAddresses: 'zcash',
+        exclude: ['tezos'],
     }
 }
 

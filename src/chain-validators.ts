@@ -20,6 +20,7 @@ import {
     TezosValidator,
     TronValidator,
     XLMValidator,
+    ZcashValidator,
 } from './validators/index.js'
 
 
@@ -143,6 +144,13 @@ const chainValidators: ChainValidators = {
     xlm: {
         alternatives: ['stellar', 'stellarlumens'],
         validator: XLMValidator,
+    },
+    zcash: {
+        alternatives: ['zec'],
+        validator: {
+            mainnet: ZcashValidator(NetworkType.MainNet),
+            testnet: ZcashValidator(NetworkType.TestNet),
+        }
     },
 }
 
