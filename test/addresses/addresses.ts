@@ -24,6 +24,7 @@ import sui from './sui.json'
 import tezos from './tezos.json'
 import tron from './tron.json'
 import xlm from './xlm.json'
+import zcash from './zcash.json'
 
 export type TestAddress = string | { address: string, memo?: string } & { invalid?: boolean, invalidMemo?: boolean }
 
@@ -54,6 +55,7 @@ const testAddresses: Record<string, TestAddress[]> = {
     tezos,
     tron,
     xlm,
+    zcash,
 } as const;
 
 export default testAddresses
