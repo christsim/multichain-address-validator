@@ -4,6 +4,7 @@ import { NetworkType } from './types.js'
 import {
     AlgorandValidator,
     BCHValidator,
+    BittensorValidator,
     BTCValidator,
     CardanoValidator,
     EOSValidator,
@@ -20,6 +21,7 @@ import {
     TezosValidator,
     TronValidator,
     XLMValidator,
+    ZcashValidator,
 } from './validators/index.js'
 import {SegwitVersion} from './validators/bitcoin_validator'
 
@@ -64,6 +66,10 @@ const chainValidators: ChainValidators = {
                 networkType: NetworkType.TestNet,
             }),
         }
+    },
+    bittensor: {
+        alternatives: ['tao'],
+        validator: BittensorValidator,
     },
     cardano: {
         alternatives: ['ada'],
@@ -124,6 +130,10 @@ const chainValidators: ChainValidators = {
             testnet: MoneroValidator(NetworkType.TestNet),
         }
     },
+    monad: {
+        alternatives: ['mon'],
+        validator: ETHValidator,
+    },
     nem: {validator: NemValidator},
     nano: {validator: NanoValidator},
     polkadot: {validator: PolkadotValidator},
@@ -148,6 +158,13 @@ const chainValidators: ChainValidators = {
     xlm: {
         alternatives: ['stellar', 'stellarlumens'],
         validator: XLMValidator,
+    },
+    zcash: {
+        alternatives: ['zec'],
+        validator: {
+            mainnet: ZcashValidator(NetworkType.MainNet),
+            testnet: ZcashValidator(NetworkType.TestNet),
+        }
     },
 }
 
