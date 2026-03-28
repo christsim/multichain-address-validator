@@ -348,18 +348,18 @@
         "release": "node scripts/release.mjs"
     },
     "dependencies": {
-        "@noble/hashes": "1.4.0",
-        "base-x": "4.0.1",
+        "@noble/hashes": "2.0.1",
+        "base-x": "5.0.1",
         "buffer": "6.0.3",
         "cbor-js": "0.1.0",
         "crc": "4.3.2",
         "lodash.isequal": "4.5.0"
     },
     "devDependencies": {
-        "chai": "4.4.1",
+        "chai": "6.2.2",
         "mocha": "11.7.5",
-        "tsx": "4.19.4",
-        "typescript": "5.5.4"
+        "tsx": "4.21.0",
+        "typescript": "6.0.2"
     },
     "overrides": {
         "serialize-javascript": "7.0.5",

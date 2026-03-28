@@ -1,8 +1,8 @@
 import {Buffer} from 'buffer'
-import { sha256 } from '@noble/hashes/sha256'
-import { sha512, sha512_256 } from '@noble/hashes/sha512'
-import { bytesToHex } from '@noble/hashes/utils'
-import { keccak_256 } from '@noble/hashes/sha3'
+import { sha256 } from '@noble/hashes/sha2.js'
+import { sha512, sha512_256 } from '@noble/hashes/sha2.js'
+import { bytesToHex } from '@noble/hashes/utils.js'
+import { keccak_256 } from '@noble/hashes/sha3.js'
 
 import base32 from './base32.js'
 import base58 from './base58.js'
@@ -103,7 +103,7 @@ export default {
         return this.sha256(this.sha256(payload)).slice(0, 8);
     },
     sha512: function(payload: any, format = 'HEX') {
-        return bytesToHex(sha512(payload))
+        return bytesToHex(sha512(payload instanceof Uint8Array ? payload : hexStr2byteArray(payload)))
     },
     sha512_256: function (payload: any, format = 'HEX') {
         return bytesToHex(sha512_256(hexStr2byteArray(payload)))
@@ -117,8 +117,9 @@ export default {
     blake2b: function (hexString: string, outlen: number) {
         return new Blake2B(outlen).update(Buffer.from(hexString, 'hex')).digest('hex');
     },
-    keccak256: function (hexString: string) {
-        return bytesToHex(keccak_256(hexString));
+    keccak256: function (input: string | Uint8Array) {
+        const data = typeof input === 'string' ? new TextEncoder().encode(input) : input;
+        return bytesToHex(keccak_256(data));
     },
     keccak256Checksum: function (payload: any) {
         return this.keccak256(payload).toString().substr(0, 8);
