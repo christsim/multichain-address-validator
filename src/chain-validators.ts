@@ -24,7 +24,7 @@ import {
     XLMValidator,
     ZcashValidator,
 } from './validators/index.js'
-import {SegwitVersion} from './validators/bitcoin_validator'
+import {SegwitVersion} from './validators/bitcoin_validator.js'
 
 
 type ChainValidators = Record<string, {
