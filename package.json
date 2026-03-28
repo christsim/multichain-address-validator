@@ -348,7 +348,7 @@
         "release": "node scripts/release.mjs"
     },
     "dependencies": {
-        "@noble/hashes": "1.4.0",
+        "@noble/hashes": "2.0.1",
         "base-x": "4.0.1",
         "buffer": "6.0.3",
         "cbor-js": "0.1.0",
