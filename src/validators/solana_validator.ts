@@ -1,7 +1,6 @@
 import base58Validator from './base58_validator.js';
 import {Address} from '../types.js'
 import {getAddress} from '../helpers.js'
-import {Buffer} from 'buffer'
 import base58 from '../crypto/base58.js'
 
 export default {
