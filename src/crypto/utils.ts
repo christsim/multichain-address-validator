@@ -1,14 +1,14 @@
 import {Buffer} from 'buffer'
 import { sha256 } from '@noble/hashes/sha2.js'
 import { sha512, sha512_256 } from '@noble/hashes/sha2.js'
-import { bytesToHex } from '@noble/hashes/utils.js'
+import { bytesToHex, hexToBytes } from '@noble/hashes/utils.js'
 import { keccak_256 } from '@noble/hashes/sha3.js'
+import { blake2b as nobleBlake2b } from '@noble/hashes/blake2.js'
 
 import base32 from './base32.js'
 import base58 from './base58.js'
 
 import Blake256 from './blake256.js'
-import Blake2B from './blake2b.js'
 
 function numberToHex(number: number, length: number) {
     let hex = number.toString(16);
@@ -115,7 +115,7 @@ export default {
         return this.blake256(this.blake256(payload)).substr(0, 8);
     },
     blake2b: function (hexString: string, outlen: number) {
-        return new Blake2B(outlen).update(Buffer.from(hexString, 'hex')).digest('hex');
+        return bytesToHex(nobleBlake2b(hexToBytes(hexString), { dkLen: outlen }));
     },
     keccak256: function (input: string | Uint8Array) {
         const data = typeof input === 'string' ? new TextEncoder().encode(input) : input;
@@ -125,7 +125,7 @@ export default {
         return this.keccak256(payload).toString().substr(0, 8);
     },
     blake2b256: function (hexString: string) {
-        return new Blake2B(32).update(Buffer.from(hexString, 'hex')).digest('hex');
+        return bytesToHex(nobleBlake2b(hexToBytes(hexString), { dkLen: 32 }));
     },
     base58: base58.decode,
     byteArray2hexStr: byteArray2hexStr,
