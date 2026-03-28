@@ -7,6 +7,7 @@ import {
     BittensorValidator,
     BTCValidator,
     CardanoValidator,
+    CosmosValidator,
     EOSValidator,
     ETHValidator,
     HederaValidator,
@@ -74,6 +75,10 @@ const chainValidators: ChainValidators = {
     cardano: {
         alternatives: ['ada'],
         validator: CardanoValidator,
+    },
+    cosmos: {
+        alternatives: ['atom'],
+        validator: CosmosValidator,
     },
     doge: {
         alternatives: ['dogecoin'],
