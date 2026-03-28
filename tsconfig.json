@@ -7,7 +7,7 @@
         "module": "ESNext",
         "rootDir": "./src",
         "resolveJsonModule": true,
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "declaration": true,
         "outDir": "./dist",
         "esModuleInterop": true,

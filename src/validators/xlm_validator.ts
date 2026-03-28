@@ -1,4 +1,5 @@
 import baseX from 'base-x'
+import {Buffer} from 'buffer'
 import crc from 'crc'
 
 import cryptoUtils from '../crypto/utils.js'
@@ -46,7 +47,7 @@ export default {
             return false;
         }
 
-        const computedChecksum = cryptoUtils.numberToHex(swap16(crc.crc16xmodem(bytes.slice(0, -2))), 4);
+        const computedChecksum = cryptoUtils.numberToHex(swap16(crc.crc16xmodem(Buffer.from(bytes.slice(0, -2)))), 4);
         const checksum = cryptoUtils.toHex(bytes.slice(-2));
 
         return computedChecksum === checksum
