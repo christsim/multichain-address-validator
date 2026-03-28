@@ -344,7 +344,8 @@
         "build": "npm run clean && npm run build:esm && npm run build:cjs",
         "clean": "npx rimraf dist",
         "test": "mocha --import=tsx test/**.test.ts",
-        "start": "npm run build && npm test"
+        "start": "npm run build && npm test",
+        "release": "node scripts/release.mjs"
     },
     "dependencies": {
         "@noble/hashes": "^1.4.0",
