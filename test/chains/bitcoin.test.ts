@@ -3,9 +3,8 @@ import {expect} from 'chai'
 import {validate, NetworkType} from '../../src'
 
 describe('bitcoin', () => {
-    describe('valid mainnet addresses', () => {
+    it('should accept valid mainnet addresses', () => {
         const valid = [
-            // P2PKH (starts with 1)
             '12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP',
             '12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y',
             '1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs',
@@ -13,23 +12,18 @@ describe('bitcoin', () => {
             '1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez',
             '116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd',
             '15uwigGExiNQxTNr1QSZYPXJMp9Px2YnVU',
-            // P2SH (starts with 3)
             '3FyVFsEyyBPzHjD3qUEgX7Jsn4tcHNZFkn',
             '38mKdURe1zcQyrFqRLzR8PRao3iLGEPVsU',
             '3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt',
-            // Bech32 native segwit v0 (starts with bc1q)
             'bc1q2t63ewm3mvh0ztmnmezxm7s0tefknenxlrlwrk',
             'BC1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KV8F3T4',
-
         ]
         valid.forEach(addr => {
-            it(`should accept ${addr.slice(0, 34)}...`, () => {
-                expect(validate(addr, 'bitcoin')).to.equal(true)
-            })
+            expect(validate(addr, 'bitcoin'), `expected ${addr} to be valid`).to.equal(true)
         })
     })
 
-    describe('valid testnet addresses', () => {
+    it('should accept valid testnet addresses', () => {
         const valid = [
             'mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef',
             'mptPo5AvLzJXi4T82vR6g82fT5uJ6HsQCu',
@@ -39,45 +33,35 @@ describe('bitcoin', () => {
             'tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy',
         ]
         valid.forEach(addr => {
-            it(`should accept testnet ${addr.slice(0, 34)}...`, () => {
-                expect(validate(addr, {chain: 'bitcoin', networkType: NetworkType.TestNet})).to.equal(true)
-            })
+            expect(validate(addr, {chain: 'bitcoin', networkType: NetworkType.TestNet}), `expected ${addr} to be valid on testnet`).to.equal(true)
         })
     })
 
-    describe('invalid addresses', () => {
+    it('should reject invalid addresses', () => {
         const invalid = [
-            '',                                          // empty
-            '1',                                         // too short
-            '12KYrjTdVGjFMtaxERSk3gphreJ5US8aU',       // one char short
-            '12KYrjTdVGjFMtaxERSk3gphreJ5US8aUPP',     // one char long
-            '12KYrjTdVGjFMtaxERSk3gphreJ5US8aUQ',       // bad checksum (last char changed)
-            '10NLrsHnBcR6dpaBpwz3LSwutbUNkNSjs',        // invalid base58 char '0'
-            '1ANNa15ZQXAZUgFiqJ3i7Z2DPU2J6hW62O',       // invalid base58 char 'O'
-            '1A Na15ZQXAZUgFiqJ3i7Z2DPU2J6hW62i',       // space in address
-            // Taproot (bc1p) — not allowed since allowedSegwitVersions=[0]
+            '',
+            '1',
+            '12KYrjTdVGjFMtaxERSk3gphreJ5US8aU',
+            '12KYrjTdVGjFMtaxERSk3gphreJ5US8aUPP',
+            '12KYrjTdVGjFMtaxERSk3gphreJ5US8aUQ',
+            '10NLrsHnBcR6dpaBpwz3LSwutbUNkNSjs',
+            '1ANNa15ZQXAZUgFiqJ3i7Z2DPU2J6hW62O',
+            '1A Na15ZQXAZUgFiqJ3i7Z2DPU2J6hW62i',
             'bc1pmr3w69uk09zqez3vy4l0jjws7uwa9fmljag2mwumfx9rr6045g8scr7nn3',
             'bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqzk5jj0',
-            // Bech32 with wrong HRP
             'ltc1q2t63ewm3mvh0ztmnmezxm7s0tefknenxlrlwrk',
-            // Random garbage
             'notanaddress',
-            '0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF',  // Ethereum address
+            '0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF',
         ]
         invalid.forEach(addr => {
-            it(`should reject ${addr || '(empty)'}`, () => {
-                expect(validate(addr, 'bitcoin')).to.equal(false)
-            })
+            expect(validate(addr, 'bitcoin'), `expected "${addr}" to be invalid`).to.equal(false)
         })
     })
 
-    describe('alternative chain names', () => {
-        const addr = '12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP'
-        const names = ['btc', 'omni']
-        names.forEach(name => {
-            it(`should accept via name "${name}"`, () => {
-                expect(validate(addr, name)).to.equal(true)
-            })
+    it('should accept alternative chain names', () => {
+        const addr = '12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP';
+        ['btc', 'omni'].forEach(name => {
+            expect(validate(addr, name), `expected valid via name "${name}"`).to.equal(true)
         })
     })
 })

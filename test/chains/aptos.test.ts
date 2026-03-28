@@ -3,7 +3,7 @@ import {expect} from 'chai'
 import {validate} from '../../src'
 
 describe('aptos', () => {
-    describe('valid addresses', () => {
+    it('should accept valid addresses', () => {
         const valid = [
             '0xaabf25b0c115130a4ad88bfa08627c5a103b7851e90869c23fadaf0512dd5133',
             '0xdce6ab89a1d26c99491a70fd4a2536d065925114deee916a1ae7d35007f4dedf',
@@ -11,35 +11,24 @@ describe('aptos', () => {
             '0x39f521d22f611a4dec2f790fef2e4f8d1f96550509e85beccf8acec52c1a7219',
         ]
         valid.forEach(addr => {
-            it(`should accept ${addr.slice(0, 20)}...`, () => {
-                expect(validate(addr, 'aptos')).to.equal(true)
-            })
+            expect(validate(addr, 'aptos'), `expected ${addr} to be valid`).to.equal(true)
         })
     })
 
-    describe('invalid addresses', () => {
+    it('should reject invalid addresses', () => {
         const invalid = [
             '',
             'notanaddress',
-            // Missing 0x prefix
             'aabf25b0c115130a4ad88bfa08627c5a103b7851e90869c23fadaf0512dd5133',
-            // Too short (63 hex chars)
             '0xaabf25b0c115130a4ad88bfa08627c5a103b7851e90869c23fadaf0512dd513',
-            // Too long (65 hex chars)
             '0xaabf25b0c115130a4ad88bfa08627c5a103b7851e90869c23fadaf0512dd51330',
-            // Non-hex characters
             '0xaabf25b0c115130a4ad88bfa08627c5a103b7851e90869c23fadaf0512ddZZZZ',
-            // Uppercase 0X
             '0XAABF25B0C115130A4AD88BFA08627C5A103B7851E90869C23FADAF0512DD5133',
-            // Short address (like Aptos 0x1)
             '0x1',
-            // Ethereum address (too short — 40 hex chars)
             '0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF',
         ]
         invalid.forEach(addr => {
-            it(`should reject ${addr || '(empty)'}`, () => {
-                expect(validate(addr, 'aptos')).to.equal(false)
-            })
+            expect(validate(addr, 'aptos'), `expected "${addr}" to be invalid`).to.equal(false)
         })
     })
 })
