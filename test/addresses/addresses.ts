@@ -6,6 +6,7 @@ import bittensor from './bittensor.json'
 import btc from './btc.json'
 import btcTestnet from './btc-testnet.json'
 import cardano from './cardano.json'
+import cosmos from './cosmos.json'
 import doge from './doge.json'
 import dogeTestnet from './doge-testnet.json'
 import eos from './eos.json'
@@ -38,6 +39,7 @@ const testAddresses: Record<string, TestAddress[]> = {
     btc,
     'btc-testnet': btcTestnet,
     cardano,
+    cosmos,
     doge,
     'doge-testnet': dogeTestnet,
     eos,

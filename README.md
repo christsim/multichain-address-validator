@@ -30,6 +30,7 @@ npm install multichain-address-validator
 * Bitcoin: `bitcoin`, `btc`, `omni`
 * Bitcoin Cash: `bitcoin-cash`, `bitcoincash`, `bitcoin cash`, `bch`
 * Cardano: `cardano`, `ada`
+* Cosmos: `cosmos`, `atom`
 * Dogecoin: `dogecoin`, `doge`
 * EOS: `eos`
 * Etherum: `ethereum`, `eth`, `erc20`, `flare`, `avalanche`, `avalanche-c`, `bsc`, `bnb`, `binance`, `sonic`, `berachain`, `story`

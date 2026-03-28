@@ -93,6 +93,10 @@ const TestCases: Record<string, TestCase> = {
         alternatives: ['ada'],
         testAddresses: 'cardano',
     },
+    'cosmos': {
+        alternatives: ['atom'],
+        testAddresses: 'cosmos',
+    },
     'doge': {
         alternatives: ['dogecoin'],
         exclude: ['btc'],
