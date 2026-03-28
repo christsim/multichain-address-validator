@@ -3,3 +3,13 @@ bower_components
 .idea
 .DS_Store
 build
+src/
+test/
+scripts/
+.github/
+.editorconfig
+.vscode/
+.travis.yml
+tsconfig*.json
+.gitignore
+index.html
