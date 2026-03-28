@@ -3,7 +3,7 @@ import {expect} from 'chai'
 import {validate} from '../../src'
 
 describe('zcash', () => {
-    describe('valid addresses', () => {
+    it('should accept valid addresses', () => {
         const valid = [
             't1NN6mnj4gaMX4aL4C2B29ekFgLttT9B1jM',
             't1ZVi2YGk98tEGYcNpXYnJFWCoLG2oYwv3J',
@@ -13,35 +13,25 @@ describe('zcash', () => {
             't1a7EMsA9HxrBgPmLYUUq3iBijnDvfgptGJ',
         ]
         valid.forEach(addr => {
-            it(`should accept ${addr}`, () => {
-                expect(validate(addr, 'zcash')).to.equal(true)
-            })
+            expect(validate(addr, 'zcash'), `expected ${addr} to be valid`).to.equal(true)
         })
     })
 
-    describe('invalid addresses', () => {
+    it('should reject invalid addresses', () => {
         const invalid = [
             '',
             'notanaddress',
-            // Bad checksum (last char changed)
             't1NN6mnj4gaMX4aL4C2B29ekFgLttT9B1jN',
-            // Bitcoin address (different version bytes)
             '12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP',
-            // Ethereum address
             '0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF',
-            // Invalid base58 characters
             't10N6mnj4gaMX4aL4C2B29ekFgLttT9B1jM',
         ]
         invalid.forEach(addr => {
-            it(`should reject ${addr || '(empty)'}`, () => {
-                expect(validate(addr, 'zcash')).to.equal(false)
-            })
+            expect(validate(addr, 'zcash'), `expected "${addr}" to be invalid`).to.equal(false)
         })
     })
 
-    describe('alternative chain names', () => {
-        it('should accept via name "zec"', () => {
-            expect(validate('t1NN6mnj4gaMX4aL4C2B29ekFgLttT9B1jM', 'zec')).to.equal(true)
-        })
+    it('should accept alternative chain names', () => {
+        expect(validate('t1NN6mnj4gaMX4aL4C2B29ekFgLttT9B1jM', 'zec')).to.equal(true)
     })
 })

@@ -3,7 +3,7 @@ import {expect} from 'chai'
 import {validate, validateMemo} from '../../src'
 
 describe('stellar (xlm)', () => {
-    describe('valid addresses', () => {
+    it('should accept valid addresses', () => {
         const valid = [
             'GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBB',
             'GB7KKHHVYLDIZEKYJPAJUOTBE5E3NJAXPSDZK7O6O44WR3EBRO5HRPVT',
@@ -17,60 +17,39 @@ describe('stellar (xlm)', () => {
             'GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ',
         ]
         valid.forEach(addr => {
-            it(`should accept ${addr.slice(0, 20)}...`, () => {
-                expect(validate(addr, 'xlm')).to.equal(true)
-            })
+            expect(validate(addr, 'xlm'), `expected ${addr.slice(0, 20)}... to be valid`).to.equal(true)
         })
     })
 
-    describe('invalid addresses', () => {
+    it('should reject invalid addresses', () => {
         const invalid = [
             '',
             'notanaddress',
-            // Wrong length (55 chars)
             'GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFB',
-            // Wrong length (57 chars)
             'GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBBB',
-            // Lowercase (invalid base32)
             'gbbm6bkzpehwyo3e3ykredpqxms4vk35ylnu7nfbri26ran7gi5pofbb',
-            // Secret key (starts with S — wrong version byte)
             'SCZANGBA5YHTNYVVV3C7CAZMCLXPILHSE2HLKJUGHXAAGX3HFAGXSB5A',
-            // Invalid base32 characters (0, 1, 8, 9)
             'G0BM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBB',
-            // Bad checksum (last char changed)
             'GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBC',
-            // Ethereum address
             '0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF',
         ]
         invalid.forEach(addr => {
-            it(`should reject ${addr || '(empty)'}`, () => {
-                expect(validate(addr, 'xlm')).to.equal(false)
-            })
+            expect(validate(addr, 'xlm'), `expected "${addr}" to be invalid`).to.equal(false)
         })
     })
 
-    describe('memo validation', () => {
-        it('should accept valid memo (<= 28 bytes)', () => {
-            expect(validate({address: 'GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ', memo: '3fdsfsdfasdfdsfgasdgfdsfgas'}, 'xlm')).to.equal(true)
-        })
-        it('should reject memo exceeding 28 bytes', () => {
-            expect(validate({address: 'GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ', memo: 'really long memo that exceeds 28 bytes'}, 'xlm')).to.equal(false)
-        })
-        it('should accept address without memo', () => {
-            expect(validate('GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ', 'xlm')).to.equal(true)
-        })
-        it('should accept empty memo', () => {
-            expect(validate({address: 'GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ', memo: ''}, 'xlm')).to.equal(true)
-        })
+    it('should validate memos', () => {
+        const addr = 'GDTYVCTAUQVPKEDZIBWEJGKBQHB4UGGXI2SXXUEW7LXMD4B7MK37CWLJ'
+        expect(validate({address: addr, memo: '3fdsfsdfasdfdsfgasdgfdsfgas'}, 'xlm'), 'valid memo').to.equal(true)
+        expect(validate({address: addr, memo: 'really long memo that exceeds 28 bytes'}, 'xlm'), 'memo too long').to.equal(false)
+        expect(validate(addr, 'xlm'), 'no memo').to.equal(true)
+        expect(validate({address: addr, memo: ''}, 'xlm'), 'empty memo').to.equal(true)
     })
 
-    describe('alternative chain names', () => {
-        const addr = 'GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBB'
-        const names = ['stellar', 'stellarlumens']
-        names.forEach(name => {
-            it(`should accept via name "${name}"`, () => {
-                expect(validate(addr, name)).to.equal(true)
-            })
+    it('should accept alternative chain names', () => {
+        const addr = 'GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBB';
+        ['stellar', 'stellarlumens'].forEach(name => {
+            expect(validate(addr, name), `expected valid via name "${name}"`).to.equal(true)
         })
     })
 })
