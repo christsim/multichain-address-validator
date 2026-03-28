@@ -19,7 +19,7 @@ function getDecoded(address: string) {
 function isValidAddressV1(address: string) {
     const decoded = getDecoded(address);
 
-    if (!decoded || (!Array.isArray(decoded) && decoded.length != 2)) {
+    if (!decoded || !Array.isArray(decoded) || decoded.length !== 2) {
         return false;
     }
 
@@ -32,7 +32,7 @@ function isValidAddressV1(address: string) {
     // get crc of the payload
     const crc = CRC.crc32(tagged);
 
-    return crc == validCrc;
+    return crc === validCrc;
 }
 
 function isValidAddressShelley(address: string, opts: { bech32Hrp: string [] }) {
@@ -43,7 +43,7 @@ function isValidAddressShelley(address: string, opts: { bech32Hrp: string [] }) 
 export default {
     isValidAddress(address: Address) {
         const addr = getAddress(address)
-        return isValidAddressV1(getAddress(addr)) || isValidAddressShelley(addr, {
+        return isValidAddressV1(addr) || isValidAddressShelley(addr, {
             bech32Hrp: ['addr']
         });
     }
