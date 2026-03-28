@@ -115,6 +115,8 @@ const TestCases: Record<string, TestCase> = {
             'binance',
             'bnb',
             'bsc',
+            'Xcap',
+            'gas',
             'eth',
             'flare',
             'monad',

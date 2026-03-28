@@ -94,6 +94,8 @@ const chainValidators: ChainValidators = {
             'BinanceSmartChain',
             'bnb',
             'bsc',
+            'Xcap',
+            'gas',
             'eth',
             'EthereumClassic',
             'EthereumPow',
