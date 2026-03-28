@@ -352,8 +352,7 @@
         "base-x": "5.0.1",
         "buffer": "6.0.3",
         "cbor-js": "0.1.0",
-        "crc": "4.3.2",
-        "lodash.isequal": "4.5.0"
+        "crc": "4.3.2"
     },
     "devDependencies": {
         "chai": "6.2.2",
