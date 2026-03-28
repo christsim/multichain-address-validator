@@ -343,7 +343,7 @@
         "build:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json",
         "build": "npm run clean && npm run build:esm && npm run build:cjs",
         "clean": "npx rimraf dist",
-        "test": "mocha --import=tsx test/**.test.ts",
+        "test": "mocha --import=tsx --recursive 'test/**/*.test.ts'",
         "start": "npm run build && npm test",
         "release": "node scripts/release.mjs"
     },
