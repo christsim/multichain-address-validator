@@ -2,7 +2,7 @@ import {Address} from '../types.js'
 import {getAddress} from '../helpers.js'
 
 function isValidEOSAddress(address: string) {
-    const regex = /^[a-z0-9.]+$/g // Must be numbers, lowercase letters and decimal points only
+    const regex = /^[a-z1-5.]+$/g // Must be numbers 1-5, lowercase letters and decimal points only
     return address.search(regex) !== -1 && address.length === 12;
 }
 

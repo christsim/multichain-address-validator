@@ -7,8 +7,8 @@ describe('eos', () => {
         const valid = [
             'bittrexacct1',
             'binancecleos',
-            '123456789012',
-            '12345678.012',
+            '123451234312',
+            '12345443.312',
             'eosio.token1',
             'my.account12',
         ]
@@ -22,6 +22,9 @@ describe('eos', () => {
             '',
             'bittrexacct',
             'bittrexacct12',
+            'bitrxacct.89',
+            '132308921121',
+            '678967896789',
             'BITTREXACCT1',
             'Bittrexacct1',
             'bittrex-act1',
