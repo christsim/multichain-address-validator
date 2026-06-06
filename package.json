@@ -357,7 +357,7 @@
     "devDependencies": {
         "chai": "6.2.2",
         "mocha": "11.7.5",
-        "tsx": "4.21.0",
+        "tsx": "4.22.4",
         "typescript": "6.0.2"
     },
     "overrides": {
