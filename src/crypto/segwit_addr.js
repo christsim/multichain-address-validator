@@ -67,6 +67,10 @@ function decode (hrp, addr) {
     if (dec.data[0] === 0 && bech32m) {
         return null;
     }
+    if (dec.data[0] === 1 && res.length !== 32) {
+        return null;
+    }
+
     if (dec.data[0] !== 0 && !bech32m) {
         return null;
     }

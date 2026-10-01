@@ -17,6 +17,10 @@ describe('bitcoin', () => {
             '3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt',
             'bc1q2t63ewm3mvh0ztmnmezxm7s0tefknenxlrlwrk',
             'BC1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KV8F3T4',
+            // BIP341 / BIP350 Taproot (witness v1, bech32m)
+            'bc1p5d7rjq7g6rdk2yhzks9smlaqtedr4dekq08ge8ztwac72sfr9rusxg3297',
+            'bc1pmr3w69uk09zqez3vy4l0jjws7uwa9fmljag2mwumfx9rr6045g8scr7nn3',
+            'bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqzk5jj0',
         ]
         valid.forEach(addr => {
             expect(validate(addr, 'bitcoin'), `expected ${addr} to be valid`).to.equal(true)
@@ -31,6 +35,7 @@ describe('bitcoin', () => {
             '2My6YWQy9Umh52TFwhRA5CXHZQVLFoB39vJ',
             'tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sl5k7',
             'tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy',
+            'tb1pqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqkgkkf5',
         ]
         valid.forEach(addr => {
             expect(validate(addr, {chain: 'bitcoin', networkType: NetworkType.TestNet}), `expected ${addr} to be valid on testnet`).to.equal(true)
@@ -47,8 +52,8 @@ describe('bitcoin', () => {
             '10NLrsHnBcR6dpaBpwz3LSwutbUNkNSjs',
             '1ANNa15ZQXAZUgFiqJ3i7Z2DPU2J6hW62O',
             '1A Na15ZQXAZUgFiqJ3i7Z2DPU2J6hW62i',
-            'bc1pmr3w69uk09zqez3vy4l0jjws7uwa9fmljag2mwumfx9rr6045g8scr7nn3',
-            'bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqzk5jj0',
+            // BIP350: valid bech32m checksum but non-zero padding bits
+            'bc1p5d7rjq7g6rdk2yhzks9smlaqtedr4dekq08ge8ztwac72sfr9ru3m79lcv',
             'ltc1q2t63ewm3mvh0ztmnmezxm7s0tefknenxlrlwrk',
             'notanaddress',
             '0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF',

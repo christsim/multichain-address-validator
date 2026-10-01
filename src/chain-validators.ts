@@ -44,12 +44,12 @@ const chainValidators: ChainValidators = {
             mainnet: BTCValidator({
                 addressTypes: ['00', '05'],
                 bech32Hrp: ['bc'],
-                allowedSegwitVersions: [SegwitVersion.NativeSegwit],
+                allowedSegwitVersions: [SegwitVersion.NativeSegwit, SegwitVersion.TapRoot],
             }),
             testnet: BTCValidator({
                 addressTypes: ['6f', 'c4', '3c', '26'],
                 bech32Hrp: ['tb'],
-                allowedSegwitVersions: [SegwitVersion.NativeSegwit],
+                allowedSegwitVersions: [SegwitVersion.NativeSegwit, SegwitVersion.TapRoot],
             }),
         },
     },

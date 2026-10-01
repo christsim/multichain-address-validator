@@ -80,7 +80,7 @@ interface BTCValidatorOpts {
     addressTypes: string[],
     expectedLength?: number,
     bech32Hrp?: [string],
-    allowedSegwitVersions?: [number],
+    allowedSegwitVersions?: number[],
     hashFunction?: 'blake256' | 'blake256keccak256' | 'keccak256' | 'sha256',
     regex?: RegExp,
 }
