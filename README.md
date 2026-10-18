@@ -39,12 +39,12 @@ npm install multichain-address-validator
 * Nano: `nano`
 * NEM: `nem`
 * Polkadot: `polkadot`
-* Ripple: `ripple', `xrp`
+* Ripple: `ripple`, `xrp` (classic `r…` addresses and XLS-5 X-addresses: `X…` on mainnet, `T…` on testnet)
 * Sia: `sia`
 * Solana: `solana`, `spl`
 * Tezos: `tezos`
 * Tron: `tron`, `trc20`
-* XLM: `xlm`, `stellar`
+* XLM: `xlm`, `stellar` (`G…` accounts and SEP-23 muxed `M…` accounts)
 
 ### Usage example
 
