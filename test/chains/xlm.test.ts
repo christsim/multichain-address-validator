@@ -46,6 +46,37 @@ describe('stellar (xlm)', () => {
         expect(validate({address: addr, memo: ''}, 'xlm'), 'empty memo').to.equal(true)
     })
 
+    // SEP-23 test cases, https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0023.md
+    it('should accept muxed (M...) addresses', () => {
+        const valid = [
+            'MA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJUAAAAAAAAAAAACJUQ', // id 0
+            'MA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJVAAAAAAAAAAAAAJLK', // id 9223372036854775808
+            'GA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJVSGZ', // the ed25519 key of both
+        ]
+        valid.forEach(addr => {
+            expect(validate(addr, 'xlm'), `expected ${addr.slice(0, 20)}... to be valid`).to.equal(true)
+        })
+        expect(validate({address: valid[0], memo: 'deposit'}, 'xlm'), 'muxed address with a memo').to.equal(true)
+    })
+
+    it('should reject the SEP-23 invalid strkeys', () => {
+        const invalid = [
+            'GAAAAAAAACGC6', // invalid length (Ed25519 should be 32 bytes, not 5)
+            'MA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJUAAAAAAAAAAAACJUR', // the unused trailing bit must be zero
+            'GA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJVSGZA', // invalid length (congruent to 1 mod 8)
+            'GA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJUACUSI', // decodes to 36 bytes, not 35
+            'G47QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJVP2I', // algorithm bits are 7
+            'MA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJVAAAAAAAAAAAAAJLKA', // invalid length (congruent to 6 mod 8)
+            'MA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJVAAAAAAAAAAAAAAV75I', // decodes to 44 bytes, not 43
+            'M47QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJUAAAAAAAAAAAACJUQ', // algorithm bits are 7
+            'MA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJUAAAAAAAAAAAACJUK===', // padding is not allowed
+            'MA7QYNF7SOWQ3GLR2BGMZEHXAVIRZA4KVWLTJJFC7MGXUA74P7UJUAAAAAAAAAAAACJUO', // invalid checksum
+        ]
+        invalid.forEach(addr => {
+            expect(validate(addr, 'xlm'), `expected "${addr}" to be invalid`).to.equal(false)
+        })
+    })
+
     it('should accept alternative chain names', () => {
         const addr = 'GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBB';
         ['stellar', 'stellarlumens'].forEach(name => {

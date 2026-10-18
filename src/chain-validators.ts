@@ -146,7 +146,10 @@ const chainValidators: ChainValidators = {
     polkadot: {validator: PolkadotValidator},
     ripple: {
         alternatives: ['xrp'],
-        validator: RippleValidator,
+        validator: {
+            mainnet: RippleValidator(NetworkType.MainNet),
+            testnet: RippleValidator(NetworkType.TestNet),
+        },
     },
     sia: {
         alternatives: ['SiaCoin'],
